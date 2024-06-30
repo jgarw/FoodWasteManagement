@@ -8,5 +8,6 @@ public interface UserDAO {
     public User retrieveUser(String email);
     public void updateUser(String email);
     public void deleteUser(String email);
+    public boolean authUser(String email, String password);
 
 }
