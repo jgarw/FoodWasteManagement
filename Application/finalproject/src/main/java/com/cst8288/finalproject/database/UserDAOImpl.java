@@ -17,7 +17,9 @@ public class UserDAOImpl implements UserDAO{
         this.connection = DBConnection.getInstance().getConnection();
     }
     
-
+    /**
+     * Method for creating a new user and inserting into Users table and underlying related tables (CONSUMERS, RETAILERS, ORGANIZATION)
+     */
     @Override
     public void createUser(User user) {
     //create a query for inserting into the table. the '?'s are placeholders for values that will be set with get methods from Event
@@ -76,8 +78,31 @@ public class UserDAOImpl implements UserDAO{
 		}
     }
 
+    /**
+     * method for retrieving/selecting user based on email
+     */
     @Override
     public User retrieveUser(String email) {
+        String query = "SELECT * FROM USERS WHERE email = ?";
+
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, email);
+            ResultSet result = statement.executeQuery();
+
+            if(result.next()){
+                String name = result.getString("name");
+                String password = result.getString("password");
+                String userType = result.getString("user_type");
+                String phone = result.getString("phone"); 
+
+                User selectedUser = UserFactory.createUser(userType, name, email, password, phone);
+                return selectedUser;
+            }
+        }catch(SQLException e){
+            System.out.println("temp SQL error handling");
+        }
+
         return null;
     }
 
@@ -89,6 +114,29 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public void deleteUser(String email) {
         
+    }
+
+    /**
+     * method for logging in a user based on entered email and password
+     */
+    @Override
+    public boolean authUser(String email, String password){
+
+        User user = retrieveUser(email);
+        if (user == null){
+            System.out.println("User not found!");
+            return false;
+        }
+        if(user.getPassword().equals(password)){
+            System.out.println("Log-in successful!");
+            return true;
+        }else{
+            System.out.println("An error occured. Please check email and password.");
+            return false;
+        }
+
+        
+
     }
 
 }
