@@ -5,10 +5,25 @@ package com.cst8288.finalproject.users;
  */
 public class User {
 
+    /**
+     * name of user
+     */
     private String name;
+    /**
+     * email of user
+     */
     private String email;
+    /**
+     * password of user
+     */
     private String password;
+    /**
+     * phone number of user
+     */
     private String phone;
+    /**
+     * type of user
+     */
     private String userType;
 
     /**

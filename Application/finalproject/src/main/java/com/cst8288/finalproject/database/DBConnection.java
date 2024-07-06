@@ -13,7 +13,7 @@ public class DBConnection {
 	private static DBConnection instance = null;
 	
 	private String serverUrl = "jdbc:mysql://localhost:3306/FoodWasteReduction";
-	private String userString = "jgarw";
+	private String userString = "root";
 	private String passwordString = "password";
 	private String driverString = "com.mysql.cj.jdbc.Driver";
 

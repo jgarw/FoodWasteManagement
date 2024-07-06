@@ -1,10 +1,11 @@
 package com.cst8288.finalproject.client;
 
-import java.sql.Connection;
 import java.util.Scanner;
 
-import com.cst8288.finalproject.database.DBConnection;
 import com.cst8288.finalproject.database.UserDAOImpl;
+import com.cst8288.finalproject.users.Consumer;
+import com.cst8288.finalproject.users.Organization;
+import com.cst8288.finalproject.users.Retailer;
 import com.cst8288.finalproject.users.User;
 import com.cst8288.finalproject.users.UserFactory;
 
@@ -17,7 +18,7 @@ public class Main
 {
     /**
      * main method that will drive the program.
-     * @param args
+     * @param args command line arguments
      */
     public static void main( String[] args )
     {
@@ -53,7 +54,21 @@ public class Main
                 password = scan.nextLine();
 
                 //authorize user based on entered email and password
-                dao.authUser(email, password);
+                User loggedInUser = dao.authUser(email, password);
+
+                //check what type of user is logged in and show necessary information
+                if(loggedInUser instanceof Retailer){
+                    System.out.println("Welcome Retailer: " + loggedInUser.getName());
+
+                    //testing if user retailer can add a new food item to the database
+                    ((Retailer)loggedInUser).addInventory();
+
+
+                }else if(loggedInUser instanceof Organization){
+                    System.out.println("Welcome Organization: " + loggedInUser.getName());
+                }else if(loggedInUser instanceof Consumer){
+                    System.out.println("Welcome Consumer: " + loggedInUser.getName());
+                }
 
             break;
 

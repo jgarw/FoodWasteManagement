@@ -8,17 +8,29 @@ import java.sql.Statement;
 
 import com.cst8288.finalproject.users.*;
 
+/**
+ * This class implements the UserDAO interface and provides methods for creating, retrieving, updating, deleting and authenticating users in the database.
+ * 
+ * @see UserDAO
+ */
 public class UserDAOImpl implements UserDAO{
 
     private Connection connection;
 
+    /**
+     * Constructor for UserDAOImpl class
+     * This constructor establishes a connection to the database when called.
+     * 
+     * @return connection to the database from DBConnection class
+     */
     public UserDAOImpl(){
         //establish a database connection when constructor is called
         this.connection = DBConnection.getInstance().getConnection();
     }
     
     /**
-     * Method for creating a new user and inserting into Users table and underlying related tables (CONSUMERS, RETAILERS, ORGANIZATION)
+     * Method for creating a new user and inserting into Users table and underlying related tables (CONSUMERS, RETAILERS, ORGANIZATION).
+     * @param user user object to be created
      */
     @Override
     public void createUser(User user) {
@@ -74,20 +86,26 @@ public class UserDAOImpl implements UserDAO{
         }
 		// handle possible exception thrown when trying to insert into table
 		catch(SQLException e){
-			e.getMessage();
+			System.out.println("Error inserting user. " + e.getMessage());
 		}
     }
 
     /**
-     * method for retrieving/selecting user based on email
+     * method for retrieving/selecting user based on email.
+     * @param email email of user to be retrieved
+     * @return selected user
      */
     @Override
     public User retrieveUser(String email) {
+        //create a query for selecting from the table
         String query = "SELECT * FROM USERS WHERE email = ?";
+        //create a user object to store the selected user
+        User selectedUser = null;
 
         try{
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, email);
+            //execute the query and store the result in a ResultSet object
             ResultSet result = statement.executeQuery();
 
             if(result.next()){
@@ -96,43 +114,86 @@ public class UserDAOImpl implements UserDAO{
                 String userType = result.getString("user_type");
                 String phone = result.getString("phone"); 
 
-                User selectedUser = UserFactory.createUser(userType, name, email, password, phone);
+                //create a user object based on the fields retrieved from the database
+                selectedUser = UserFactory.createUser(userType, name, email, password, phone);
+                //return the selected user
                 return selectedUser;
+            }else{
+                //if no user is found, print a message
+                System.out.println("User not found!");
             }
         }catch(SQLException e){
-            System.out.println("temp SQL error handling");
+            System.out.println("Error retrieving user." + e.getMessage());
         }
 
-        return null;
+        return selectedUser;
     }
 
+    /**
+     * method for updating user based on email.
+     * @param email email of user to be updated
+     * @param name new name of user
+     * @param password new password of user
+     * @param phone new phone of user
+     */
     @Override
-    public void updateUser(String email) {
+    public void updateUser(String email, String name, String password, String phone) {
         
+        //create a query for updating the table
+        String query = "UPDATE USERS SET name = ?, password = ?, phone = ? WHERE email = ?";
+
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
+            statement.setString(2, password);
+            statement.setString(3, phone);
+            statement.setString(4, email);
+            statement.executeUpdate();
+        }catch(SQLException e){
+            System.out.println("Error updating user." + e.getMessage());
+        }
+
     }
 
+    /**
+     * method for deleting user based on email.
+     * @param email email of user to be deleted
+     */
     @Override
     public void deleteUser(String email) {
+
+        //create a query for deleting from the table
+        String query = "DELETE FROM USERS WHERE email = ?";
+
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, email);
+            statement.executeUpdate();
+        }catch(SQLException e){
+            System.out.println("Error deleting user." + e.getMessage());
+        }
         
     }
 
     /**
-     * method for logging in a user based on entered email and password
+     * method for logging in a user based on entered email and password.
+     * @param email email of user to be logged in
+     * @param password password of user to be logged in
      */
     @Override
-    public boolean authUser(String email, String password){
+    public User authUser(String email, String password){
 
         User user = retrieveUser(email);
         if (user == null){
             System.out.println("User not found!");
-            return false;
+            return null;
         }
         if(user.getPassword().equals(password)){
             System.out.println("Log-in successful!");
-            return true;
+            return user;
         }else{
             System.out.println("An error occured. Please check email and password.");
-            return false;
+            return null;
         }
 
         
