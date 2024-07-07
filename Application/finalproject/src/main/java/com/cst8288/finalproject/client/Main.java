@@ -8,6 +8,8 @@ import com.cst8288.finalproject.database.UserDAOImpl;
 import com.cst8288.finalproject.users.User;
 import com.cst8288.finalproject.users.UserFactory;
 
+// This is a test comment for github- Hieu
+
 /**
  * This class will act as the driver class that will execute the program.
  * 
