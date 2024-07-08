@@ -33,7 +33,7 @@ public class UserDAOImpl implements UserDAO{
      * @param user user object to be created
      */
     @Override
-    public void createUser(User user) {
+    public void insertUser(User user) {
     //create a query for inserting into the table. the '?'s are placeholders for values that will be set with get methods from Event
 		String query = "INSERT INTO USERS (name, email, password, user_type, phone) VALUES (?, ?, ?, ?, ?)";
 

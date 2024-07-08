@@ -14,7 +14,7 @@ public interface UserDAO {
      * Method for creating a new user and inserting into Users table and underlying related tables (CONSUMERS, RETAILERS, ORGANIZATION).
      * @param user user object to be created
      */
-    public void createUser(User user);
+    public void insertUser(User user);
 
     /**
      * Method for retrieving a user from the database using email.

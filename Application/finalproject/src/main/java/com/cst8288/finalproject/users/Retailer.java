@@ -3,7 +3,7 @@ package com.cst8288.finalproject.users;
 import java.sql.Date;
 import java.util.Scanner;
 
-import com.cst8288.finalproject.database.FoodItemsDAOImpl;
+import com.cst8288.finalproject.database.*;
 
 /**
  * This class extends the User class and provides a constructor for creating a Retailer object.
@@ -29,7 +29,7 @@ public class Retailer extends User{
     public void addInventory() {
                 
                 // Create a new FoodItemsDAOImpl object to interact with the FoodItems table
-                FoodItemsDAOImpl inventory = new FoodItemsDAOImpl();
+                FoodItemsDAO inventory = new FoodItemsDAOImpl();
 
                 Scanner scanner = new Scanner(System.in);
 

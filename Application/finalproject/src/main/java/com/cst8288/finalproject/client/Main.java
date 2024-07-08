@@ -94,7 +94,7 @@ public class Main
                 User newUser = UserFactory.createUser(userType, name, email, password, phone);
 
                 //insert new user into tables
-                dao.createUser(newUser);
+                dao.insertUser(newUser);
             
             break;
 
