@@ -36,3 +36,16 @@ FOREIGN KEY (user_id) REFERENCES USERS(user_id)
 );
 
 SELECT * FROM ORGANIZATIONS;
+
+CREATE TABLE FoodItems (
+    item_id INT AUTO_INCREMENT PRIMARY KEY,
+    retailer_id INT,
+    item_name VARCHAR(255),
+    expiration_date DATE,
+    price DECIMAL(10, 2),
+    surplus BOOLEAN,
+    listing_type VARCHAR(255),
+    CONSTRAINT fk_retailer FOREIGN KEY (retailer_id) REFERENCES RETAILERS(retailer_id)
+);
+
+select * from fooditems
