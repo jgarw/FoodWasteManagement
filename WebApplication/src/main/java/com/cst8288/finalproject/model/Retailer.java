@@ -1,9 +1,9 @@
-package com.cst8288.finalproject.users;
+package com.cst8288.finalproject.model;
 
 import java.sql.Date;
 import java.util.Scanner;
 
-import com.cst8288.finalproject.database.*;
+import com.cst8288.finalproject.controller.*;
 
 /**
  * This class extends the User class and provides a constructor for creating a Retailer object.

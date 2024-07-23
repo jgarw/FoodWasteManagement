@@ -1,6 +1,6 @@
-package com.cst8288.finalproject.database;
+package com.cst8288.finalproject.controller;
 
-import com.cst8288.finalproject.users.User;
+import com.cst8288.finalproject.model.User;
 
 /**
  * This interface provides methods for creating, retrieving, updating, deleting and authenticating users in the database.

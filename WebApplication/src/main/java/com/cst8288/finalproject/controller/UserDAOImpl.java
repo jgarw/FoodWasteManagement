@@ -1,4 +1,4 @@
-package com.cst8288.finalproject.database;
+package com.cst8288.finalproject.controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.cst8288.finalproject.users.*;
+import com.cst8288.finalproject.model.*;
 
 /**
  * This class implements the UserDAO interface and provides methods for creating, retrieving, updating, deleting and authenticating users in the database.

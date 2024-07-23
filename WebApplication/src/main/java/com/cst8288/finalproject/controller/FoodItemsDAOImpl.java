@@ -1,11 +1,11 @@
-package com.cst8288.finalproject.database;
+package com.cst8288.finalproject.controller;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.cst8288.finalproject.items.FoodItem;
+import com.cst8288.finalproject.model.FoodItem;
 
 public class FoodItemsDAOImpl implements FoodItemsDAO{
 

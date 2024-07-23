@@ -1,4 +1,4 @@
-package com.cst8288.finalproject.database;
+package com.cst8288.finalproject.controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

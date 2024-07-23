@@ -1,4 +1,4 @@
-package com.cst8288.finalproject.users;
+package com.cst8288.finalproject.model;
 
 /**
  * factory class that will create a new user based on user type provided.

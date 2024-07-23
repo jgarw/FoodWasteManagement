@@ -1,4 +1,4 @@
-package com.cst8288.finalproject.users;
+package com.cst8288.finalproject.model;
 /**
  * abstract class to hold all information regarding a User.
  * This abstract class will act as a superclass for all User sublasses (Consumer, Organization, Retailer)

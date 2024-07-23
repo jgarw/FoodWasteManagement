@@ -1,4 +1,4 @@
-package com.cst8288.finalproject.database;
+package com.cst8288.finalproject.controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;

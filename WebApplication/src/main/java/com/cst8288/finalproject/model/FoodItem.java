@@ -1,4 +1,4 @@
-package com.cst8288.finalproject.items;
+package com.cst8288.finalproject.model;
 
 import java.sql.Date;
 

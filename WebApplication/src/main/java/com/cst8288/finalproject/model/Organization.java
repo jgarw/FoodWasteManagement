@@ -1,4 +1,4 @@
-package com.cst8288.finalproject.users;
+package com.cst8288.finalproject.model;
 
 /**
  * This class extends the User class and provides a constructor for creating an Organization object.

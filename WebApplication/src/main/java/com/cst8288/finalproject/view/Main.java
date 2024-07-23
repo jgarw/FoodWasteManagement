@@ -1,13 +1,13 @@
-package com.cst8288.finalproject.client;
+package com.cst8288.finalproject.view;
 
 import java.util.Scanner;
 
-import com.cst8288.finalproject.database.UserDAOImpl;
-import com.cst8288.finalproject.users.Consumer;
-import com.cst8288.finalproject.users.Organization;
-import com.cst8288.finalproject.users.Retailer;
-import com.cst8288.finalproject.users.User;
-import com.cst8288.finalproject.users.UserFactory;
+import com.cst8288.finalproject.controller.UserDAOImpl;
+import com.cst8288.finalproject.model.Consumer;
+import com.cst8288.finalproject.model.Organization;
+import com.cst8288.finalproject.model.Retailer;
+import com.cst8288.finalproject.model.User;
+import com.cst8288.finalproject.model.UserFactory;
 
 /**
  * This class will act as the driver class that will execute the program.
