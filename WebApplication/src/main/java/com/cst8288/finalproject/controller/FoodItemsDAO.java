@@ -1,6 +1,7 @@
 package com.cst8288.finalproject.controller;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.cst8288.finalproject.model.FoodItem;
 
@@ -13,6 +14,6 @@ import com.cst8288.finalproject.model.FoodItem;
 public interface FoodItemsDAO {
 
     public void addFoodItem(String name, Date expirationDate, double price, boolean surplus, String listingType, String retailerEmail);
-    public FoodItem retriveAllFoodItems(String retailerEmail);
+    public List<FoodItem> retriveAllFoodItems(String retailerEmail);
 
 }
