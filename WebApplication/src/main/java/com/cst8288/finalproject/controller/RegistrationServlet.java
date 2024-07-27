@@ -1,7 +1,7 @@
-package main.java.com.cst8288.finalproject.controller;
+package com.cst8288.finalproject.controller;
 
-import main.java.com.cst8288.finalproject.model.User;
-import main.java.com.cst8288.finalproject.service.UserService;
+import com.cst8288.finalproject.model.User;
+import com.cst8288.finalproject.service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,9 +16,9 @@ import java.io.IOException;
  */
 public class RegistrationServlet {
 
-    private UserService userService = null;
+    private RegistrationServlet userService = null;
 
-    public SignupServlet() {
+    public RegistrationServlet() {
         this.userService = new UserService();
     }
 
@@ -33,22 +33,22 @@ public class RegistrationServlet {
         //Boolean isSubscribe = "on".equalsIgnoreCase(request.getParameter("isSubscribe"));
 
         User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
+        user.setName(name);
         user.setEmail(email);
+        user.setPassword(password);
         user.setPhone(phone);
-        user.setTypeId(userType);
+        user.setUserType(userType);
         //user.setIsSubscribe(isSubscribe);
 
         try {
             userService.create(user);
 
             HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-            session.setAttribute("user", userService.findByUsername(username));
+            session.setAttribute("username", email);
+            session.setAttribute("user", userService.findByEmail(email));
         } catch (ValidationException e) {
             request.setAttribute("errorMsg", e.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher("signup.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
             dispatcher.forward(request, response);
         }
 
@@ -57,7 +57,7 @@ public class RegistrationServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("signup.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
         dispatcher.forward(request, response);
     }
 

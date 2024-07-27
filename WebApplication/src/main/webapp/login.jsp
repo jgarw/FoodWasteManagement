@@ -8,7 +8,7 @@
     <FORM ACTION="signin" METHOD="POST">
         <table>
             <tr>
-                <td>Username:</td>
+                <td>Email:</td>
                 <td><INPUT TYPE="TEXT" NAME="username" VALUE=""></td>
             </tr>
             <tr>
