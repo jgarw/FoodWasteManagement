@@ -6,7 +6,7 @@
 <h2>Registration</h2>
 
 <div>
-    <FORM ACTION="signup" METHOD="POST">
+    <FORM ACTION="RegisterServlet" METHOD="POST">
         <table>
             <tr>
                 <td>Name:</td>
@@ -32,9 +32,10 @@
                 <td>User Type:</td>
                 <td>
                     <select name="userType" required>
-                        <option value="1">Retailer</option>
-                        <option value="2">Charitable organization</option>
-                        <option value="3">Consumer</option>
+                        <option selected disabled>Account Type</option>
+                        <option value="Retailer">Retailer</option>
+                        <option value="Organization">Charitable organization</option>
+                        <option value="Consumer">Consumer</option>
                     </select>
                 </td>
             </tr>

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import com.cst8288.finalproject.model.*;
 
@@ -199,5 +200,9 @@ public class UserDAOImpl implements UserDAO{
         
 
     }
+
+    // public List<User> subscribedUsers() {
+    //     String query = "SELECT * FROM USERS WHERE Subscribe = yes";
+    // }
 
 }

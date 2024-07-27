@@ -18,6 +18,7 @@
             <tr>
                 <td></td>
                 <td><button>login</button></td>
+                <td><a href="register.jsp"><button>Register</button></a></td>
             </tr>
         </table>
     </FORM>

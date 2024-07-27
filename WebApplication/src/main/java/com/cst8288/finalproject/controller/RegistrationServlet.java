@@ -1,10 +1,10 @@
 package com.cst8288.finalproject.controller;
 
 import com.cst8288.finalproject.model.User;
-import com.cst8288.finalproject.service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,25 +14,27 @@ import java.io.IOException;
 /**
  * @author 
  */
-public class RegistrationServlet {
+@WebServlet("/RegisterServlet")
+public class RegistrationServlet extends HttpServlet{
 
-    private RegistrationServlet userService = null;
+    private static final long serialVersionUID = 1L;
+    private UserDAO userDAO = new UserDAOImpl();
 
     public RegistrationServlet() {
-        this.userService = new UserService();
+        super();
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String username = request.getParameter("name");
+        String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
         String userType = request.getParameter("userType");
         //Boolean isSubscribe = "on".equalsIgnoreCase(request.getParameter("isSubscribe"));
 
-        User user = new User();
+        User user = new User(name, email, password, phone, userType);
         user.setName(name);
         user.setEmail(email);
         user.setPassword(password);
@@ -41,14 +43,13 @@ public class RegistrationServlet {
         //user.setIsSubscribe(isSubscribe);
 
         try {
-            userService.create(user);
-
+            userDAO.insertUser(user);
             HttpSession session = request.getSession();
-            session.setAttribute("username", email);
-            session.setAttribute("user", userService.findByEmail(email));
-        } catch (ValidationException e) {
+            session.setAttribute("email", email);
+            session.setAttribute("name", name);
+        } catch (Exception e) {
             request.setAttribute("errorMsg", e.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/webapp/WEB-INF/views/register.jsp");
             dispatcher.forward(request, response);
         }
 
@@ -57,7 +58,7 @@ public class RegistrationServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/webapp/WEB-INF/views/register.jsp");
         dispatcher.forward(request, response);
     }
 

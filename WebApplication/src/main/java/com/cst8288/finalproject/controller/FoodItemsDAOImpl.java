@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cst8288.finalproject.model.FoodItem;
 
@@ -53,10 +55,10 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
     }
 
     @Override
-    public FoodItem retriveAllFoodItems(String retailerEmail) {
+    public List<FoodItem> retriveAllFoodItems(String retailerEmail) {
         
-        return null;
-
+        return new ArrayList<FoodItem>();
+    
     }
 
     
