@@ -46,7 +46,7 @@
                 <td></td>
                 <td>
                     <button type="submit" class="btn">Submit</button>
-                    <a href="index.jsp"><button type="button" class="btn">Go Back</button></a>
+                    <a href="index.jsp"><button type="button" class="btn">Back to Main</button></a>
                 </td>
             </tr>
         </table>
