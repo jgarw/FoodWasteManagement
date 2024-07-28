@@ -1,6 +1,5 @@
 package com.cst8288.finalproject.controller;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -13,7 +12,7 @@ import java.util.Properties;
  */
 public class DBConnection {
 	
-	private static Connection connection = null;
+	private Connection connection;
 	private static DBConnection instance = null;
 
 	/**
@@ -35,12 +34,14 @@ public class DBConnection {
         Properties dbConnection = new Properties();
         
         //input path to read from database.properties file
-        try (InputStream in = new FileInputStream("data/database.properties")){
-                dbConnection.load(in);
-                System.out.println("Properties file loaded");
+        try (InputStream in = getClass().getClassLoader().getResourceAsStream("data/database.properties")) {
+            if (in == null) {
+                throw new IOException("Properties file not found");
             }
-        catch(IOException e){
-            System.out.println("error reading properties");
+            dbConnection.load(in);
+            System.out.println("Properties file loaded");
+        } catch(IOException e) {
+            System.out.println("Error reading properties: " + e.getMessage());
         }
 
         //read database.properties file and store values into variables
@@ -53,7 +54,7 @@ public class DBConnection {
 
         //create serverUrl from database.properties values
         String serverUrl = "jdbc:"+dbms+"://"+host+":"+port+"/"+dbName;
-        
+       
         try{
             //load JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
