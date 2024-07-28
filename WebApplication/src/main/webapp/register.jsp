@@ -3,30 +3,29 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h2>Registration</h2>
-
-<div>
-    <FORM ACTION="RegisterServlet" METHOD="POST">
+<div class="container">
+    <h2>Registration</h2>
+    <form action="RegisterServlet" method="POST">
         <table>
             <tr>
                 <td>Name:</td>
-                <td><INPUT TYPE="TEXT" NAME="name" VALUE="" placeholder="First and last name"></td>
+                <td><input type="text" name="name" placeholder="First and last name"></td>
             </tr>
             <tr>
                 <td>Email:</td>
-                <td><INPUT TYPE="TEXT" NAME="email" VALUE="" placeholder="sample123@gmail.com"></td>
+                <td><input type="text" name="email" placeholder="sample123@gmail.com"></td>
             </tr>
             <tr>
                 <td>Password:</td>
-                <td><INPUT TYPE="password" NAME="password" VALUE="" ></td>
+                <td><input type="password" name="password"></td>
             </tr>
             <tr>
                 <td>Confirmed Password:</td>
-                <td><INPUT TYPE="password" NAME="confirmedPassword" VALUE=""></td>
+                <td><input type="password" name="confirmedPassword"></td>
             </tr>
             <tr>
                 <td>Phone:</td>
-                <td><INPUT TYPE="TEXT" NAME="phone" VALUE="" placeholder="e.g. 6135559999"></td>
+                <td><input type="text" name="phone" placeholder="e.g. 6135559999 no spaces"></td>
             </tr>
             <tr>
                 <td>User Type:</td>
@@ -41,14 +40,17 @@
             </tr>
             <tr>
                 <td></td>
-                <td><INPUT TYPE="checkbox" NAME="Subscribe"> Subscribe</td>
+                <td><input type="checkbox" name="Subscribe"> Subscribe</td>
             </tr>
             <tr>
                 <td></td>
-                <td><button>Submit</button>&nbsp;<a href="index.jsp"><button>Go Back</button></a></td>
+                <td>
+                    <button type="submit" class="btn">Submit</button>
+                    <a href="index.jsp"><button type="button" class="btn">Go Back</button></a>
+                </td>
             </tr>
         </table>
-    </FORM>
+    </form>
 </div>
 </body>
 </html>
