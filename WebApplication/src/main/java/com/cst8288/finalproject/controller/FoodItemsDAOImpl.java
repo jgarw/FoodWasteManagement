@@ -3,6 +3,7 @@ package com.cst8288.finalproject.controller;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,13 +55,104 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 
     }
 
-    @Override
-    public List<FoodItem> retriveAllFoodItems(String retailerEmail) {
-        
-        return new ArrayList<FoodItem>();
-    
+    /**
+     * Updates the quantity of a food item in the database.
+     * @param itemId The ID of the food item to update.
+     * @param newQuantity The new quantity to set.
+     */
+    public void updateItemQuantity(int itemId, int newQuantity) throws SQLException {
+        String query = "UPDATE FoodItems SET quantity = ? WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, newQuantity);
+            statement.setInt(2, itemId);
+        } catch (SQLException e) {
+            System.out.println("Error updating item quantity: " + e.getMessage());
+        }
     }
 
-    
+    /**
+     * Reteive all items from the database
+     */
+@Override
+public List<FoodItem> retrieveAllFoodItems(String retailerEmail) {
+    List<FoodItem> foodItems = new ArrayList<>();
+    String query = "SELECT * FROM FoodItems where quantity < 0";
+
+    try (PreparedStatement statement = connection.prepareStatement(query);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            FoodItem item = new FoodItem();
+            item.setId(resultSet.getInt("id"));
+            item.setName(resultSet.getString("item_name"));
+            item.setExpirationDate(resultSet.getDate("expiration_date"));
+            item.setPrice(resultSet.getDouble("price"));
+            item.setSurplus(resultSet.getBoolean("surplus"));
+            /* need to add the retailer id or name in the fooditem object class */
+            foodItems.add(item);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error retrieving food items: " + e.getMessage());
+    }
+    return foodItems;
+}
+
+
+/**
+ * retreivie all items in the database that available for donation for Organizations.
+ * @return foodItems array list of donations
+ */
+public List<FoodItem> retrieveAvailableDonations() {
+    List<FoodItem> foodItems = new ArrayList<>();
+    String query = "SELECT * FROM FoodItems where listing_type = 'donation' ";
+
+    try (PreparedStatement statement = connection.prepareStatement(query);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            FoodItem item = new FoodItem();
+            item.setId(resultSet.getInt("id"));
+            item.setName(resultSet.getString("item_name"));
+            item.setExpirationDate(resultSet.getDate("expiration_date"));
+            item.setQuantity(resultSet.getInt("quantity"));
+            /* need to add the retailer id or name in the fooditem object class */
+            foodItems.add(item);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error retrieving food items: " + e.getMessage());
+    }
+    return foodItems;
+}
+
+/**
+ * 
+ * @return Discounted items for consumers
+ */
+public List<FoodItem> retrieveDiscountedItems() {
+    List<FoodItem> foodItems = new ArrayList<>();
+    String query = "SELECT * FROM FoodItems where listing_type = 'discount' ";
+
+    try (PreparedStatement statement = connection.prepareStatement(query);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            FoodItem item = new FoodItem();
+            item.setId(resultSet.getInt("id"));
+            item.setName(resultSet.getString("item_name"));
+            item.setExpirationDate(resultSet.getDate("expiration_date"));
+            item.setPrice(resultSet.getDouble("price"));
+            item.setQuantity(resultSet.getInt("quantity"));
+            /* need to add the retailer id or name in the fooditem object class */
+            foodItems.add(item);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error retrieving food items: " + e.getMessage());
+    }
+    return foodItems;
+}    
 
 }

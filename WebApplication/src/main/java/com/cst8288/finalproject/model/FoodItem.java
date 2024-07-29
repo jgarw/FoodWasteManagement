@@ -8,6 +8,11 @@ import java.sql.Date;
 public class FoodItem {
 
     /**
+     * id of the food Item
+     */
+    int id;
+
+    /**
      * name of the food item
      */
     String name;
@@ -29,6 +34,11 @@ public class FoodItem {
     String listingType;
 
     /**
+     * quantity of items being listed
+     */
+    public int quantity;
+
+    /**
      * Constructor for FoodItem class
      * @param name name of the food item
      * @param expirationDate expiration date of the food item
@@ -44,9 +54,29 @@ public class FoodItem {
         this.listingType = listingType;
     }
 
+    public FoodItem() {
+        //TODO Auto-generated constructor stub
+    }
+
+    /**
+     * Getter for Item Id
+     * @return id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Setter for Id
+     * @param id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
      * Getter for name
-     * @return
+     * @return name
      */
     public String getName() {
         return name;
@@ -61,7 +91,7 @@ public class FoodItem {
 
     /**
      * getter for expiration date
-     * @return
+     * @return expiration date
      */
     public Date getExpirationDate() {
         return expirationDate;
@@ -77,7 +107,7 @@ public class FoodItem {
 
     /**
      * getter for price
-     * @return
+     * @return price
      */
     public double getPrice() {
         return price;
@@ -93,7 +123,7 @@ public class FoodItem {
 
     /**
      * getter for surplus 
-     * @return
+     * @return surplus
      */
     public boolean isSurplus() {
         return surplus;
@@ -109,7 +139,7 @@ public class FoodItem {
 
     /**
      * getter for listing type
-     * @return
+     * @return surplus
      */
     public String getListingType() {
         return listingType;
@@ -123,6 +153,20 @@ public class FoodItem {
         this.listingType = listingType;
     }
 
-    
+    /**
+     * getter for quantity of items
+     * @return quantity
+     */
+    public int getQuantity(){
+        return quantity;
+    }
+
+    /**
+     * set the quatity
+     * @param quantity
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
 }
