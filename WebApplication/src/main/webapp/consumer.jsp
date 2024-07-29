@@ -12,31 +12,41 @@
 <body>
 <div class="container">
     <h1>Welcome, <%= request.getSession().getAttribute("userName") %>!</h1>
-    <h2>Food Items currently on discount</h2>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Expiration Date</th>
-            <th>Price</th>
-            <th>Quantity</th>
-        </tr>
-        <%
-            FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
-            List<FoodItem> foodItemsList = foodItemsDAO.retrieveDiscountedItems();
+    <h2>Food Items Available for Donation</h2>
 
-            // Loop through the list and display each item
-            for (FoodItem item : foodItemsList) {
-                %>
+    <%
+        FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
+        List<FoodItem> foodItemsList = foodItemsDAO.retrieveDiscounteditems();
+
+        if (foodItemsList.isEmpty()) {
+    %>
+        <p>No food items available for discount at the moment. Please check back later.</p>
+    <%
+        } else {
+    %>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Expiration Date</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            <%
+                for (FoodItem item : foodItemsList) {
+            %>
                 <tr>
                     <td><%= item.getName() %></td>
                     <td><%= item.getExpirationDate() %></td>
                     <td><%= item.getPrice() %></td>
                     <td><%= item.getQuantity() %></td>
                 </tr>
-                <%
-            }
-        %>
-    </table>
+            <%
+                }
+            %>
+        </table>
+    <%
+        }
+    %>
 </div>
 </body>
 </html>
