@@ -71,7 +71,7 @@ if ("post".equalsIgnoreCase(request.getMethod())) {
 
     if (password != null) {
         UserDAOImpl userDAO = new UserDAOImpl();
-        User user = UserFactory.createUser(String userType, String name, String email, String password, String phone);
+        User user = UserFactory.createUser(userType, name, email, password, phone);
         userDAO.insertUser(user);
         response.sendRedirect("login.jsp");
     } else {
