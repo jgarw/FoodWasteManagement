@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="checkbox" name="Subscribe"> Subscribe</td>
+                <td><input type="checkbox" name="subscribe"> Subscribe to Food Alerts</td>
             </tr>
             <tr>
                 <td></td>
@@ -64,6 +64,7 @@ if ("post".equalsIgnoreCase(request.getMethod())) {
     String password = null;
     String phone = request.getParameter("phone");
     String userType = request.getParameter("userType");
+    boolean subscribed = request.getParameter("subscribe") != null;
 
     if (request.getParameter("password").equals(request.getParameter("confirmedPassword"))) {
         password = request.getParameter("password");
@@ -73,7 +74,14 @@ if ("post".equalsIgnoreCase(request.getMethod())) {
         UserDAOImpl userDAO = new UserDAOImpl();
         User user = UserFactory.createUser(userType, name, email, password, phone);
         userDAO.insertUser(user);
+
+        if(subscribed) {
+            SubscriberDAOImpl subscriberDAO = new SubscriberDAOImpl();
+            subscriberDAO.subscribeToAlerts(email);
+        }
+
         response.sendRedirect("login.jsp");
+
     } else {
         // Handle password mismatch error
         out.println("Password and confirmed password do not match.");

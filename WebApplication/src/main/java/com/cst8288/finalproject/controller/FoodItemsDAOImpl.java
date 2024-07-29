@@ -3,6 +3,7 @@ package com.cst8288.finalproject.controller;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,11 +55,64 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 
     }
 
-    @Override
-    public List<FoodItem> retriveAllFoodItems(String retailerEmail) {
+    // @Override
+    // public List<FoodItem> retriveAllFoodItems(String retailerEmail) {
         
-        return new ArrayList<FoodItem>();
+    //     return new ArrayList<FoodItem>();
     
+    // }
+
+    /**
+     * method for updating a food item in the FoodItems table.
+     */
+    @Override
+    public void updateFoodItem(String name, Date expirationDate, double price, boolean surplus, String listingType,
+            String retailerEmail) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'updateFoodItem'");
+    }
+
+    /**
+     * Method for retrieving a food item from the FoodItems table by ID.
+     * @param id
+     * @return
+     */
+    @Override
+    public FoodItem retrieveFoodItem(int id){
+
+        String query = "SELECT * FROM FoodItems WHERE item_id = ?";
+        FoodItem foodItem = null;
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            System.out.println("Food item retrieved successfully.");
+
+            String name = rs.getString("item_name");
+            Date expirationDate = rs.getDate("expiration_date");
+            double price = rs.getDouble("price");
+            boolean surplus = rs.getBoolean("surplus");
+            String listingType = rs.getString("listing_type");
+
+            foodItem = new FoodItem(name, expirationDate, price, surplus, listingType);
+        } catch (SQLException e) {
+            System.out.println("Error retrieving food item: " + e.getMessage());
+        }
+
+        return foodItem;
+    }
+
+    @Override
+    public void markItemSurplus(int id) {
+        String query = "UPDATE FoodItems SET surplus = ? WHERE item_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setBoolean(1, true);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+            System.out.println("Item marked as surplus successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error marking item as surplus: " + e.getMessage());
+        }
     }
 
     
