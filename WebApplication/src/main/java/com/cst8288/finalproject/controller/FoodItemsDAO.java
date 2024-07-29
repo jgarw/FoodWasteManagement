@@ -14,6 +14,6 @@ import com.cst8288.finalproject.model.FoodItem;
 public interface FoodItemsDAO {
 
     public void addFoodItem(String name, Date expirationDate, double price, boolean surplus, String listingType, String retailerEmail);
-    public List<FoodItem> retriveAllFoodItems(String retailerEmail);
+    public List<FoodItem> retrieveAllFoodItems(String retailerEmail);
 
 }
