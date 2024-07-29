@@ -11,6 +11,8 @@ import com.cst8288.finalproject.controller.*;
  */
 public class Retailer extends User{
 
+    private RetailerSubject retailerSubject;
+
     /**
      * Constructor for Retailer class
      * @param name name of the retailer
@@ -21,6 +23,9 @@ public class Retailer extends User{
      */
     public Retailer(String name, String email, String password, String phone, String userType) {
        super(name, email, password, phone, userType);
+       //use the singleton pattern to get the instance of the RetailerSubject
+       this.retailerSubject = RetailerSubject.getInstance();
+
     }
     
     /**
@@ -61,6 +66,23 @@ public class Retailer extends User{
 
                 scanner.close();
 
+    }
+
+    /**
+     * Method for updating a food item in the retailers inventory
+     * 
+     * When marked as surplus, a notification is sent to all observers in Subscribers table
+     *
+     * @param item_id
+     */
+    public void markItemSurplus(int item_id){
+        FoodItemsDAO inventory = new FoodItemsDAOImpl();
+        inventory.markItemSurplus(item_id);
+
+        FoodItem item = inventory.retrieveFoodItem(item_id);
+
+        // Notify all observers of the change
+        retailerSubject.notifyObservers("Food item" +  item.name + "marked as surplus.");
     }
 
 }
