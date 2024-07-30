@@ -39,6 +39,11 @@
             User user = userDAO.authUser(email, password);
 
             
+            // Checking if user is valid
+            if (user != null) {
+                // Adding email as a session variable
+                session.setAttribute("email", username);
+
                 if (user instanceof Retailer) {
                     response.sendRedirect("retailer.jsp");
                 } else if (user instanceof Consumer) {
@@ -51,6 +56,7 @@
             } else {
                 out.println("<p>Please enter email and password</p>");
             }
+        }
         
     %>
 </div>
