@@ -22,6 +22,14 @@
 		    <version>4.0.1</version>
 		    <scope>provided</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+<dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.5.0-b01</version>
+</dependency>
+
     </dependencies>
 
     <build>

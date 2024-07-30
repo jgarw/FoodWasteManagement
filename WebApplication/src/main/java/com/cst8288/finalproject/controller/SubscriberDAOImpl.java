@@ -40,6 +40,8 @@ public class SubscriberDAOImpl implements SubscriberDAO{
 
 			// execute the SQL statemetn
 			statement.executeUpdate();
+			
+			System.out.println("Successfully subscribed to food alerts!");
         }
         catch(SQLException e){
             System.out.println("Error subscribing user. " + e.getMessage());

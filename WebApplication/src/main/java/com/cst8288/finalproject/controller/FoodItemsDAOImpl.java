@@ -55,12 +55,6 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 
     }
 
-    // @Override
-    // public List<FoodItem> retriveAllFoodItems(String retailerEmail) {
-        
-    //     return new ArrayList<FoodItem>();
-    
-    // }
 
     /**
      * method for updating a food item in the FoodItems table.
@@ -114,6 +108,12 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
             System.out.println("Error marking item as surplus: " + e.getMessage());
         }
     }
+
+	@Override
+	public List<FoodItem> retriveAllFoodItems(String retailerEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
     
 
