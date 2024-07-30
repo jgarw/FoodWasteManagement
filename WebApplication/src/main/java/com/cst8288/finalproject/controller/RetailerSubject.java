@@ -35,18 +35,25 @@ public class RetailerSubject implements Subject {
 
     /**
      * Method to notify all observers of a change in the subject.
-     * This is done by iterating through the list of subscribers and calling the update method on each observer.
+     * This is done by iterating through the list of subscribers and calling the sendEmail method on each observer in subscribers table
+     * 
+     * @see EmailSender for sendEmail logic
      * 
      * @param message
      */
     @Override
     public void notifyObservers(String message) {
         SubscriberDAOImpl subscriberDAO = new SubscriberDAOImpl();
+        EmailSender sender = new EmailSender();
+        
+        //use the retrieveSubscribers method from SubscriberDAO to get a list of all email subscribers
         List<String> subscribers = subscriberDAO.retrieveSubscribers();
 
+        //for each subscriber, send an email notification about the update
         for (int i = 0; i < subscribers.size(); i++) {
             String email = subscribers.get(i);
-            sendNotification(email, message);
+            //sendNotification(email, message);
+            sender.sendEmail(email, message);
         }
     }
 

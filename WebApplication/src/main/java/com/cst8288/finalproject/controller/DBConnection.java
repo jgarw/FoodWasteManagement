@@ -39,7 +39,7 @@ public class DBConnection {
                 throw new IOException("Properties file not found");
             }
             dbConnection.load(in);
-            System.out.println("Properties file loaded");
+            System.out.println("Properties file loaded for database connection...");
         } catch(IOException e) {
             System.out.println("Error reading properties: " + e.getMessage());
         }

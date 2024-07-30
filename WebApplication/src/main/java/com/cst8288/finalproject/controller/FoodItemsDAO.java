@@ -53,6 +53,6 @@ public interface FoodItemsDAO {
      * @param retailerEmail
      * @return
      */
-    public List<FoodItem> retriveAllFoodItems(String retailerEmail);
+    public List<FoodItem> retrieveAllFoodItems(String retailerEmail);
 
 }

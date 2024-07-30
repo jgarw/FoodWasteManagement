@@ -55,6 +55,7 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 
     }
 
+<<<<<<< HEAD
     /**
      * Updates the quantity of a food item in the database.
      * @param itemId The ID of the food item to update.
@@ -74,6 +75,8 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
     //     return new ArrayList<FoodItem>();
     
     // }
+=======
+>>>>>>> a09475c (email successfully sends from company email to users in subscribers table)
 
     /**
      * method for updating a food item in the FoodItems table.
