@@ -1,4 +1,3 @@
-
 <%@ page import="java.util.List" %>
 <%@ page import="com.cst8288.finalproject.model.FoodItem" %>
 <%@ page import="com.cst8288.finalproject.controller.FoodItemsDAOImpl" %>
@@ -17,7 +16,7 @@
 
     <%
         FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
-        List<FoodItem> foodItemsList = foodItemsDAO.retrieveDiscounteditems();
+        List<FoodItem> foodItemsList = foodItemsDAO.retrieveDiscountedItems();
 
         if (foodItemsList.isEmpty()) {
     %>

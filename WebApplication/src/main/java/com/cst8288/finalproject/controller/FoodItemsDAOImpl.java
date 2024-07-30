@@ -55,7 +55,6 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 
     }
 
-<<<<<<< HEAD
     /**
      * Updates the quantity of a food item in the database.
      * @param itemId The ID of the food item to update.
@@ -69,24 +68,9 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
             statement.setInt(2, itemId);
         } catch (SQLException e) {
             System.out.println("Error updating item quantity: " + e.getMessage());
-    // @Override
-    // public List<FoodItem> retriveAllFoodItems(String retailerEmail) {
-        
-    //     return new ArrayList<FoodItem>();
-    
-    // }
-=======
->>>>>>> a09475c (email successfully sends from company email to users in subscribers table)
-
-    /**
-     * method for updating a food item in the FoodItems table.
-     */
-    @Override
-    public void updateFoodItem(String name, Date expirationDate, double price, boolean surplus, String listingType,
-            String retailerEmail) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'updateFoodItem'");
+        }
     }
+
 
     /**
      * Method for retrieving a food item from the FoodItems table by ID.
@@ -95,7 +79,6 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
      */
     @Override
     public FoodItem retrieveFoodItem(int id){
-
         String query = "SELECT * FROM FoodItems WHERE item_id = ?";
         FoodItem foodItem = null;
 
@@ -117,6 +100,7 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 
         return foodItem;
     }
+
 
     /**
      * method to mark an item in the FoodItems table as surplus
@@ -219,9 +203,11 @@ public List<FoodItem> retrieveDiscountedItems() {
 }
 
 @Override
-public List<FoodItem> retriveAllFoodItems(String retailerEmail) {
+public void updateFoodItem(String name, Date expirationDate, double price, boolean surplus, String listingType,
+		String retailerEmail) {
 	// TODO Auto-generated method stub
-	return null;
+	
 }
+
 
 }
