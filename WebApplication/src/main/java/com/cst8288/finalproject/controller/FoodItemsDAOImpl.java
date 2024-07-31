@@ -124,10 +124,13 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 @Override
 public List<FoodItem> retrieveAllFoodItems(String retailerEmail) {
     List<FoodItem> foodItems = new ArrayList<>();
-    String query = "SELECT * FROM FoodItems where quantity < 0";
+    String query = "SELECT * FROM FoodItems where quantity < 0 AND retailer_id = ?";
 
     try (PreparedStatement statement = connection.prepareStatement(query);
          ResultSet resultSet = statement.executeQuery()) {
+        
+        RetailerDAOImpl retailerDAO = new RetailerDAOImpl();   
+        statement.setInt(1, retailerDAO.getIdByEmail(retailerEmail));
 
         while (resultSet.next()) {
             FoodItem item = new FoodItem();
@@ -136,6 +139,8 @@ public List<FoodItem> retrieveAllFoodItems(String retailerEmail) {
             item.setExpirationDate(resultSet.getDate("expiration_date"));
             item.setPrice(resultSet.getDouble("price"));
             item.setSurplus(resultSet.getBoolean("surplus"));
+            item.setListingType(resultSet.getString("listing_type"));
+            item.setQuantity(resultSet.getInt("quantity"));
             /* need to add the retailer id or name in the fooditem object class */
             foodItems.add(item);
         }
