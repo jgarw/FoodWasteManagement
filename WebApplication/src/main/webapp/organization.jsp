@@ -24,26 +24,36 @@
     <%
         } else {
     %>
+    <form method="post" action="claimItems.jsp">
         <table>
             <tr>
+                <th>Select</th>
                 <th>Name</th>
                 <th>Expiration Date</th>
-                <th>Quantity</th>
+                <th>Listing Type</th>
+                <th>Available Quantity</th>
+                <th>Claim Quantity</th>
             </tr>
             <%
                 for (FoodItem item : foodItemsList) {
             %>
                 <tr>
+                    <td><input type="checkbox" name="selectedItems" value="<%= item.getId() %>"></td>
                     <td><%= item.getName() %></td>
                     <td><%= item.getExpirationDate() %></td>
+                    <td><%= item.getListingType() %></td>
                     <td><%= item.getQuantity() %></td>
+                    <td><input type="number" name="quantity_<%= item.getId() %>" min="1" max="<%= item.getQuantity() %>" value="1"></td>
                 </tr>
             <%
                 }
             %>
         </table>
+        <input type="submit" value="Claim Selected Items">
+    </form>
     <%
         }
     %>
 </div>
+</body>
 </html>

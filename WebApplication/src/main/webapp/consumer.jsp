@@ -12,18 +12,9 @@
 <body>
 <div class="container">
     <h1>Welcome, <%= request.getSession().getAttribute("userName") %>!</h1>
-    <h2>Food Items Available for Donation</h2>
+    <h2>Discounted Food Items</h2>
 
-    <%
-        FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
-        List<FoodItem> foodItemsList = foodItemsDAO.retrieveDiscountedItems();
-
-        if (foodItemsList.isEmpty()) {
-    %>
-        <p>No food items available for discount at the moment. Please check back later.</p>
-    <%
-        } else {
-    %>
+    <form action="purchase.jsp" method="post">
         <table>
             <tr>
                 <th>Name</th>
@@ -32,20 +23,51 @@
                 <th>Quantity</th>
             </tr>
             <%
-                for (FoodItem item : foodItemsList) {
+                FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
+                List<FoodItem> foodItemsList = foodItemsDAO.retrieveDiscountedItems();
+
+                if (foodItemsList.isEmpty()) {
+                    out.println("<tr><td colspan='4'>No food items available for discount at the moment. Please check back later.</td></tr>");
+                } else {
+                    for (FoodItem item : foodItemsList) {
             %>
                 <tr>
                     <td><%= item.getName() %></td>
                     <td><%= item.getExpirationDate() %></td>
-                    <td><%= item.getPrice() %></td>
-                    <td><%= item.getQuantity() %></td>
+                    <td>$<%= item.getPrice() %></td>
+                    <td>
+                        <input type="number" name="quantity_<%= item.getId() %>" 
+                               min="1" max="<%= item.getQuantity() %>" value="1" 
+                               class="item" data-price="<%= item.getPrice() %>"
+                               onchange="calculateTotal()">
+                    </td>
                 </tr>
             <%
+                    }
                 }
             %>
         </table>
-    <%
-        }
-    %>
+        <p id="totalPrice"></p>
+        <button type="submit">Purchase</button>
+    </form>
 </div>
+<script>
+    function calculateTotal() {
+        var total = 0;
+        var items = document.getElementsByClassName("item");
+
+        for (var i = 0; i < items.length; i++) {
+            var price = parseFloat(items[i].getAttribute("data-price"));
+            var quantity = parseInt(items[i].value);
+            total += price * quantity;
+        }
+
+        document.getElementById("totalPrice").innerText = "Total Price: $" + total.toFixed(2);
+    }
+
+    window.onload = function() {
+        calculateTotal();
+    };
+</script>
+</body>
 </html>
