@@ -42,7 +42,7 @@
             // Checking if user is valid
             if (user != null) {
                 // Adding email as a session variable
-                session.setAttribute("email", username);
+                session.setAttribute("username", email);
 
                 if (user instanceof Retailer) {
                     response.sendRedirect("retailer.jsp");
