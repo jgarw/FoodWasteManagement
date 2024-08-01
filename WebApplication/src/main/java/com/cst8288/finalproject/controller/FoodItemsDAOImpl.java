@@ -35,7 +35,7 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
     @Override
     public void addFoodItem(String name, Date expirationDate, double price, boolean surplus, String listingType,
             String retailerEmail) {
-                String query = "INSERT INTO FoodItems (item_name, expiration_date, price, surplus, retailer_id) VALUES (?, ?, ?, ?, ?)";
+                String query = "INSERT INTO FoodItems (item_name, expiration_date, price, surplus, listing_type, retailer_id) VALUES (?, ?, ?, ?, ?, ?)";
 
                 //create a RetailerDAOImpl object to get the retailer ID from the email, then enter ID into fooditem table
                 RetailerDAOImpl retailerDAO = new RetailerDAOImpl();
@@ -45,7 +45,8 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
                     statement.setDate(2, expirationDate);
                     statement.setDouble(3, price);
                     statement.setBoolean(4, surplus);
-                    statement.setInt(5, retailerDAO.getIdByEmail(retailerEmail)); // Set retailer ID
+                    statement.setString(5,  listingType);
+                    statement.setInt(6, retailerDAO.getIdByEmail(retailerEmail)); // Set retailer ID
                     statement.executeUpdate();
                     System.out.println("Food item added successfully.");
                     
@@ -118,38 +119,40 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
         }
     }
 
-    /**
-     * Reteive all items from the database
-     */
+/**
+ * Retrieve all items from the database
+ */
 @Override
 public List<FoodItem> retrieveAllFoodItems(String retailerEmail) {
     List<FoodItem> foodItems = new ArrayList<>();
-    String query = "SELECT * FROM FoodItems where quantity < 0 AND retailer_id = ?";
+    String query = "SELECT * FROM FoodItems WHERE retailer_id = ?";
 
-    try (PreparedStatement statement = connection.prepareStatement(query);
-         ResultSet resultSet = statement.executeQuery()) {
+    try (PreparedStatement statement = connection.prepareStatement(query)) {
         
-        RetailerDAOImpl retailerDAO = new RetailerDAOImpl();   
-        statement.setInt(1, retailerDAO.getIdByEmail(retailerEmail));
+        RetailerDAOImpl retailerDAO = new RetailerDAOImpl();
+        int retailerId = retailerDAO.getIdByEmail(retailerEmail);
+        statement.setInt(1, retailerId);
 
-        while (resultSet.next()) {
-            FoodItem item = new FoodItem();
-            item.setId(resultSet.getInt("id"));
-            item.setName(resultSet.getString("item_name"));
-            item.setExpirationDate(resultSet.getDate("expiration_date"));
-            item.setPrice(resultSet.getDouble("price"));
-            item.setSurplus(resultSet.getBoolean("surplus"));
-            item.setListingType(resultSet.getString("listing_type"));
-            item.setQuantity(resultSet.getInt("quantity"));
-            /* need to add the retailer id or name in the fooditem object class */
-            foodItems.add(item);
+        try (ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                FoodItem item = new FoodItem();
+                item.setId(resultSet.getInt("item_id"));
+                item.setName(resultSet.getString("item_name"));
+                item.setExpirationDate(resultSet.getDate("expiration_date"));
+                item.setPrice(resultSet.getDouble("price"));
+                item.setSurplus(resultSet.getBoolean("surplus"));
+                item.setListingType(resultSet.getString("listing_type"));
+                item.setQuantity(resultSet.getInt("quantity"));
+                // Add the food item to the list
+                foodItems.add(item);
+            }
         }
-
     } catch (SQLException e) {
         System.out.println("Error retrieving food items: " + e.getMessage());
     }
     return foodItems;
 }
+
 
 
 /**
