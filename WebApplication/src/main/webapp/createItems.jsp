@@ -28,7 +28,7 @@
             <input type="radio" id="surplusNo" name="surplus" value="false">
             <label for="surplusNo">No</label><br><br>
 
-            <% if ("yes".equals(request.getParameter("surplus"))) { %>
+            <% if ("true".equals(request.getParameter("surplus"))) { %>
                 <label>Listing Type:</label>
                 <input type="radio" id="discounted" name="listingType" value="discounted">
                 <label for="discounted">Discounted</label>
@@ -56,7 +56,7 @@
                 boolean surplus = Boolean.parseBoolean(request.getParameter("surplus"));
                 String listingType = request.getParameter("listingType");
                 String discountPrice = request.getParameter("discountPrice");
-                String retailerEmail = (String) session.getAttribute("email");
+                String retailerEmail = (String) session.getAttribute("username");
 
                 // Add your processing logic here (e.g., save to database, validate, etc.)
                 FoodItemsDAOImpl dao = new FoodItemsDAOImpl();
