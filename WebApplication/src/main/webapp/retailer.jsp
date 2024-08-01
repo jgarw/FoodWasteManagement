@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.cst8288.finalproject.controller.*" %>
+<%@ page import="com.cst8288.finalproject.model.*" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,6 +27,11 @@
             </thead>
             <tbody>
                 <%
+                    FoodItemsDAOImpl foodItemsDao = new FoodItemsDAOImpl();
+                	String retailerEmail = (String) session.getAttribute("email");
+
+                    List<FoodItem> foodItems = foodItemsDao.retrieveAllFoodItems(retailerEmail);
+                    
                     if (foodItems != null) {
                         for (FoodItem item : foodItems) {
                 %>
