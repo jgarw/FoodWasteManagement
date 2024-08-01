@@ -10,14 +10,26 @@ import java.util.List;
 
 import com.cst8288.finalproject.model.FoodItem;
 
+/**
+ * This class inserts the purchased items purchased by the consumer into the corresponding table inside the database
+ */
 public class PurchasedItemsDAOImpl implements PurchasedItemsDAO {
 
+    /**
+     * establish a connection
+     */
     private Connection connection;
 
+    /**
+     * instantiate connection
+     */
     public PurchasedItemsDAOImpl() {
         connection = DBConnection.getInstance().getConnection();
     }
 
+    /**
+     * Method for inserting purchases into the database
+     */
     @Override
     public void addPurchase(int item_id, String consumerEmail, int quantity) {
                 String query = "INSERT INTO purchases (item_id, consumer_id, quantity) VALUES (?, ?, ?)";

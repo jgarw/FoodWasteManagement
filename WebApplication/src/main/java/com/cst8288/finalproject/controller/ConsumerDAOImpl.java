@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * This class will be used to interact with the Retailers table in the database.
+ * This class will be used to interact with the consumers table in the database.
  * It will implement the UserTypeDAO interface to use the getIdFromEmail method.
  */
 public class ConsumerDAOImpl implements UserTypeDAO{
@@ -18,29 +18,29 @@ public class ConsumerDAOImpl implements UserTypeDAO{
     }
 
     /**
-     * Fetches the retailer_id using the email of the retailer.
-     * @param email The email of the user who is a retailer.
-     * @return The retailer_id corresponding to the given email.
+     * Fetches the consumer_id using the email of the consumer.
+     * @param email The email of the user who is a consumer.
+     * @return The consumer_id corresponding to the given email.
      * @throws SQLException If there is any issue executing the query.
      */
     public int getIdByEmail(String email) {
-        // This query assumes that the Users table and Retailers table are linked by user_id
-        String query = "SELECT r.retailer_id FROM Retailers r JOIN Users u ON r.user_id = u.user_id WHERE u.email = ?";
+        // This query assumes that the Users table and consumers table are linked by user_id
+        String query = "SELECT c.consumer_id FROM consumers c JOIN Users u ON c.user_id = c.user_id WHERE c.email = ?";
         
-        int retailerId = 0;
+        int consumerId = 0;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, email);
 
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next()) {
-                    retailerId = resultSet.getInt("retailer_id");
+                    consumerId = resultSet.getInt("consumer_id");
                 } else {
-                    throw new SQLException("Retailer not found with email: " + email);
+                    throw new SQLException("consumer not found with email: " + email);
                 }
             }catch(SQLException e) {
-                System.out.println("Error fetching retailer ID: " + e.getMessage());
+                System.out.println("Error fetching consumer ID: " + e.getMessage());
             }
-            return retailerId;
+            return consumerId;
         }
 
 }
