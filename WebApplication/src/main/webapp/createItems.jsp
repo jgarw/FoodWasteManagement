@@ -1,8 +1,8 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="com.cst8288.finalproject.controller.*" %>
 <%@ page import="com.cst8288.finalproject.model.*" %>
+<%@ page import="java.sql.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,9 +23,9 @@
             <input type="number" id="price" name="price" step="0.01" required><br><br>
 
             <label>Surplus:</label>
-            <input type="radio" id="surplusYes" name="surplus" value="yes">
+            <input type="radio" id="surplusYes" name="surplus" value="true">
             <label for="surplusYes">Yes</label>
-            <input type="radio" id="surplusNo" name="surplus" value="no">
+            <input type="radio" id="surplusNo" name="surplus" value="false">
             <label for="surplusNo">No</label><br><br>
 
             <% if ("yes".equals(request.getParameter("surplus"))) { %>
@@ -51,12 +51,12 @@
         <%
             if ("POST".equalsIgnoreCase(request.getMethod())) {
                 String itemName = request.getParameter("itemName");
-                String expirationDate = request.getParameter("expirationDate");
-                String price = request.getParameter("price");
-                String surplus = request.getParameter("surplus");
+                Date expirationDate = Utility.parseDate(request.getParameter("expirationDate"));
+                double price = Double.parseDouble(request.getParameter("price"));
+                boolean surplus = Boolean.parseBoolean(request.getParameter("surplus"));
                 String listingType = request.getParameter("listingType");
                 String discountPrice = request.getParameter("discountPrice");
-                String retailerEmail = session.getAttribute("email");
+                String retailerEmail = (String) session.getAttribute("email");
 
                 // Add your processing logic here (e.g., save to database, validate, etc.)
                 FoodItemsDAOImpl dao = new FoodItemsDAOImpl();
