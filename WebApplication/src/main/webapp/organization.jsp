@@ -10,20 +10,12 @@
     <title>Organization Dashboard</title>
 </head>
 <body>
+<%@ include file="header.jsp" %>
+<div class="content">
 <div class="container">
     <h1>Welcome, <%= request.getSession().getAttribute("userName") %>!</h1>
     <h2>Food Items Available for Donation</h2>
 
-    <%
-        FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
-        List<FoodItem> foodItemsList = foodItemsDAO.retrieveAvailableDonations();
-
-        if (foodItemsList.isEmpty()) {
-    %>
-        <p>No food items available for donation at the moment. Please check back later.</p>
-    <%
-        } else {
-    %>
     <form method="post" action="claimItems.jsp">
         <table>
             <tr>
@@ -35,6 +27,12 @@
                 <th>Claim Quantity</th>
             </tr>
             <%
+            FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
+            List<FoodItem> foodItemsList = foodItemsDAO.retrieveAvailableDonations();
+
+            if (foodItemsList.isEmpty()) {
+                out.println("<tr><td colspan='5'>No food items available for discount at the moment. Please check back later.</td></tr>");
+            } else {
                 for (FoodItem item : foodItemsList) {
             %>
                 <tr>
@@ -47,13 +45,15 @@
                 </tr>
             <%
                 }
+            }
             %>
-        </table>
-        <input type="submit" value="Claim Selected Items">
+          </table>
     </form>
-    <%
-        }
-    %>
+        <button type="submit">Claim Items</button>
 </div>
+</div>
+<footer>
+    <p>&copy; 2024 WeHateFoodWaste. All rights reserved.</p>
+</footer>
 </body>
 </html>

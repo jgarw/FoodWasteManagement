@@ -60,5 +60,9 @@
         }
     %>
 </div>
+
+<footer>
+    <p>&copy; 2024 WeHateFoodWaste. All rights reserved.</p>
+</footer>
 </body>
 </html>
