@@ -1,0 +1,124 @@
+/* General styles */
+body {
+    background-image: url('../images/main.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+/* Center content and add padding */
+.container {
+    width: 90%;
+    max-width: 600px; /* Adjust max-width to ensure content is centered */
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Style for headers */
+h2 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* Style for forms and tables */
+form {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+/* Style for input fields */
+input[type="text"], input[type="password"], select {
+    width: calc(100% - 22px); /* Full width minus padding and border */
+    padding: 10px;
+    margin: 5px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for buttons */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%; /* Make buttons full width */
+    max-width: 150px; /* Limit the max width */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Ensure links are not underlined */
+a {
+    text-decoration: none;
+}
+
+/* Specific styles for index.jsp */
+.button-group {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Specific styles for registration and login pages */
+form table {
+    margin: 0 auto;
+}
+
+form table td {
+    text-align: left; /* Align text left for consistency */
+    padding: 10px;
+}
+
+/* Align and size checkboxes and buttons */
+form table td:last-child {
+    text-align: center; /* Center align the last column */
+}
+
+form table td:nth-child(2) {
+    width: 80%;
+}
+
+button,
+input[type="checkbox"] {
+    margin: 10px 0;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-left: 0; /* Align checkbox with text fields */
+}
+
+form .checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px; /* Align with other fields */
+}
+
+form .button-container {
+    text-align: center; /* Center buttons */
+    margin-top: 20px;
+}
