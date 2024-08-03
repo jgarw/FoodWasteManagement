@@ -14,7 +14,7 @@
 
     <div class="content">
         <div class="container">
-            <h1>Welcome, <%= request.getSession().getAttribute("userName") %>!</h1>
+            <h1>Welcome, <%= request.getSession().getAttribute("name") %>!</h1>
             <h2>Discounted Food Items</h2>
 
             <form action="processPurchase.jsp" method="post">
