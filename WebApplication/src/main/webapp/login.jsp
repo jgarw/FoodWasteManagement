@@ -22,11 +22,11 @@
                 <td>Password:</td>
                 <td><input type="password" name="password"></td>
             </tr>
-            <tr>
-                <td><button type="submit" class="btn">Login</button></td>
-                <td><a href="register.jsp"><button type="button" class="btn">Register</button></a></td>
-            </tr>
         </table>
+        <div>
+        	<button type="submit" class="btn">Login</button>
+        	<a href="register.jsp"><button type="button" class="btn">Register</button></a>
+        </div>
     </form>
 
 	<!-- Java code to handle user authorization and redirection to correct page -->

@@ -51,7 +51,7 @@
                 <td></td>
                 <td>
                     <button type="submit" class="btn">Submit</button>
-                    <a href="index.jsp"><button type="button" class="btn">Go Back</button></a>
+                    <a href="login.jsp"><button type="button" class="btn">Login Page</button></a>
                 </td>
             </tr>
         </table>

@@ -33,7 +33,7 @@ public interface FoodItemsDAO {
      * @param listingType
      * @param retailerEmail
      */
-    public void updateFoodItem(String name, Date expirationDate, double price, boolean surplus, String listingType, String retailerEmail);
+    public void updateFoodItem(int itemId, String name, Date expirationDate, double price, boolean surplus, String listingType, String retailerEmail);
 
     /**
      * Method for marking a food item as surplus in the FoodItems table.

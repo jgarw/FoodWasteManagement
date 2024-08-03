@@ -58,20 +58,9 @@
                 String discountPrice = request.getParameter("discountPrice");
                 String retailerEmail = (String) session.getAttribute("username");
 
-                // Add your processing logic here (e.g., save to database, validate, etc.)
                 FoodItemsDAOImpl dao = new FoodItemsDAOImpl();
                 dao.addFoodItem(itemName, expirationDate, price, surplus, listingType, retailerEmail);
-
-                // Example output
-                out.println("<h2>Item Created Successfully</h2>");
-                out.println("<p>Item Name: " + itemName + "</p>");
-                out.println("<p>Expiration Date: " + expirationDate + "</p>");
-                out.println("<p>Price: " + price + "</p>");
-                out.println("<p>Surplus: " + surplus + "</p>");
-                if ("yes".equals(surplus)) {
-                    out.println("<p>Listing Type: " + listingType + "</p>");
-                    out.println("<p>Discount Price: " + discountPrice + "</p>");
-                }
+                response.sendRedirect("retailer.jsp");
             }
         %>
     </body>
