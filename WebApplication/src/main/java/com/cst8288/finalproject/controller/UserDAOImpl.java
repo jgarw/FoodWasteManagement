@@ -200,8 +200,4 @@ public class UserDAOImpl implements UserDAO{
 
     }
 
-    // public List<User> subscribedUsers() {
-    //     String query = "SELECT * FROM USERS WHERE Subscribe = yes";
-    // }
-
 }
