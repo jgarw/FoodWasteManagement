@@ -30,35 +30,39 @@
     </form>
 
 	<!-- Java code to handle user authorization and redirection to correct page -->
-    <%
+    <% 
         if ("post".equalsIgnoreCase(request.getMethod())) {
             String email = request.getParameter("username");
             String password = request.getParameter("password");
-            UserDAOImpl userDAO = new UserDAOImpl();
 
-            User user = userDAO.authUser(email, password);
+            if (email != null && password != null) {
+                UserDAOImpl userDAO = new UserDAOImpl();
+                User user = userDAO.authUser(email, password);
 
-            
-            // Checking if user is valid
-            if (user != null) {
-                // Adding email as a session variable
-                session.setAttribute("username", email);
-
-                if (user instanceof Retailer) {
-                    response.sendRedirect("retailer.jsp");
-                } else if (user instanceof Consumer) {
-                    response.sendRedirect("consumer.jsp");
-                } else if (user instanceof Organization) {
-                    response.sendRedirect("organization.jsp");
+                if (user != null) {
+                    session.setAttribute("userName", user.getName());
+                    session.setAttribute("userEmail", user.getEmail());
+                    if (user instanceof Retailer) {
+                        response.sendRedirect("retailer.jsp");
+                    } else if (user instanceof Consumer) {
+                        response.sendRedirect("consumer.jsp");
+                    } else if (user instanceof Organization) {
+                        response.sendRedirect("organization.jsp");
+                    } else {
+                        out.println("<p>Invalid user type!</p>");
+                    }
                 } else {
-                    out.println("<p>Invalid user type!</p>");
+                    out.println("<p>Invalid email or password. Please try again.</p>");
                 }
             } else {
                 out.println("<p>Please enter email and password</p>");
             }
         }
-        
     %>
 </div>
+
+<footer>
+    <p>&copy; 2024 WeHateFoodWaste. All rights reserved.</p>
+</footer>
 </body>
 </html>
