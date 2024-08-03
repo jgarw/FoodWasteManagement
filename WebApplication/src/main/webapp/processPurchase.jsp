@@ -20,7 +20,7 @@
 <%@ include file="header.jsp" %>
 
 <div class="container">
-    <h1>Hello <%= request.getSession().getAttribute("userName") %>!</h1>
+    <h1>Hello <%= request.getSession().getAttribute("name") %>!</h1>
     <br>
     <h2>Thank you for helping us battle food waste!</h2>
     <br>
@@ -29,7 +29,7 @@
 
     <%
         // Retrieve session and form parameters
-        String consumerEmail = (String) session.getAttribute("userEmail");
+        String consumerEmail = (String) session.getAttribute("username");
         Enumeration<String> parameterNames = request.getParameterNames();
 
         FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
@@ -101,7 +101,7 @@
     <br>
     <h2>Purchase History</h2>
     <%
-        List<Purchase> purchaseHistory = purchasedItemsDAO.retrieveAllPurchases((String) request.getSession().getAttribute("userEmail"));
+        List<Purchase> purchaseHistory = purchasedItemsDAO.retrieveAllPurchases((String) request.getSession().getAttribute("username"));
 
         if (purchaseHistory.isEmpty()) {
     %>

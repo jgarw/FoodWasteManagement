@@ -19,7 +19,7 @@
 <%@ include file="header.jsp" %>
 
 <div class="container">
-    <h1>Hello <%= request.getSession().getAttribute("userName") %>!</h1>
+    <h1>Hello <%= request.getSession().getAttribute("username") %>!</h1>
     <br>
     <h2>Thank you for helping us battle food waste!</h2>
     <br>
@@ -31,7 +31,7 @@
         if (selectedItems == null || selectedItems.length == 0) {
             out.println("<p>No items selected. Please select items to claim.</p>");
         } else {
-            String organizationEmail = (String) request.getSession().getAttribute("userEmail");
+            String organizationEmail = (String) request.getSession().getAttribute("username");
 
             FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
             ClaimedItemsDAOImpl claimedItemsDAO = new ClaimedItemsDAOImpl();
@@ -95,7 +95,8 @@
     <br>
     <h2>Claim History</h2>
     <%
-        List<Claim> claimHistory = claimedItemsDAO.retrieveAllClaims((String) request.getSession().getAttribute("userEmail"));
+    	ClaimedItemsDAOImpl claimedItemsDAO = new ClaimedItemsDAOImpl();   
+        List<Claim> claimHistory = claimedItemsDAO.retrieveAllClaims((String) request.getSession().getAttribute("username"));
 
         if (claimHistory.isEmpty()) {
     %>

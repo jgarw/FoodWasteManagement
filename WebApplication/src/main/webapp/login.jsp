@@ -40,8 +40,8 @@
                 User user = userDAO.authUser(email, password);
 
                 if (user != null) {
-                    session.setAttribute("userName", user.getName());
-                    session.setAttribute("userEmail", user.getEmail());
+                    session.setAttribute("name", user.getName());
+                    session.setAttribute("username", user.getEmail());
                     if (user instanceof Retailer) {
                         response.sendRedirect("retailer.jsp");
                     } else if (user instanceof Consumer) {

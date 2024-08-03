@@ -13,10 +13,10 @@
 <%@ include file="header.jsp" %>
 <div class="content">
 <div class="container">
-    <h1>Welcome, <%= request.getSession().getAttribute("userName") %>!</h1>
+    <h1>Welcome, <%= request.getSession().getAttribute("name") %>!</h1>
     <h2>Food Items Available for Donation</h2>
 
-    <form method="post" action="claimItems.jsp">
+    <form action="claimItems.jsp" method="post" >
         <table>
             <tr>
                 <th>Select</th>
@@ -31,7 +31,7 @@
             List<FoodItem> foodItemsList = foodItemsDAO.retrieveAvailableDonations();
 
             if (foodItemsList.isEmpty()) {
-                out.println("<tr><td colspan='5'>No food items available for discount at the moment. Please check back later.</td></tr>");
+                out.println("<tr><td colspan='6'>No food items available for discount at the moment. Please check back later.</td></tr>");
             } else {
                 for (FoodItem item : foodItemsList) {
             %>
@@ -48,8 +48,10 @@
             }
             %>
           </table>
+          
+          <button type="submit">Claim Items</button>
+          
     </form>
-        <button type="submit">Claim Items</button>
 </div>
 </div>
 <footer>
