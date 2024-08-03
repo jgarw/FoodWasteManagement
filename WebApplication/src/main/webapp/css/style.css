@@ -40,6 +40,11 @@ table {
     width: 100%;
 }
 
+#retailerTable {
+	background-color: #45a049;
+    color: white;
+}
+
 td {
     padding: 10px;
     vertical-align: middle;

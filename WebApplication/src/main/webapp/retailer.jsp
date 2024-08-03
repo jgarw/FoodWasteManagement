@@ -35,20 +35,20 @@
                     
                     if (foodItems != null) {
                         for (FoodItem item : foodItems) {
-			                %>
-			                <tr>
-			                    <td><%= item.getId() %></td>
-			                    <td><%= item.getName() %></td>
-			                    <td><%= item.getExpirationDate() %></td>
-			                    <td><%= item.getPrice() %></td>
-			                    <td><%= item.isSurplus() %></td>
-			                    <td><%= item.getListingType() %></td>
-			                    <td><%= item.getQuantity() %></td>
-			                    <td>
-			                        <a href="updateItem.jsp?id=<%= item.getId() %>">Update</a>
-			                    </td>
-			                </tr>
-			                <%
+                %>
+                <tr>
+                    <td><%= item.getId() %></td>
+                    <td><%= item.getName() %></td>
+                    <td><%= item.getExpirationDate() %></td>
+                    <td><%= item.getPrice() %></td>
+                    <td><%= item.isSurplus() %></td>
+                    <td><%= item.getListingType() %></td>
+                    <td><%= item.getQuantity() %></td>
+                    <td>
+                        <a href="updateItem.jsp?id=<%= item.getId() %>">Update</a>
+                    </td>
+                </tr>
+                <%
                         }
                     }
                 %>
