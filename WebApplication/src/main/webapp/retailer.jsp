@@ -11,12 +11,9 @@
         <title>Retailer Page</title>
     </head>
     <body>
-    	<p> <% out.print((String) session.getAttribute("username")); %> </p>
-    	<p> <% RetailerDAOImpl dao = new RetailerDAOImpl(); 
-    	out.print(dao.getIdByEmail((String) session.getAttribute("username"))); %>
         <h1>Food Items</h1>
         <a href="createItems.jsp"><button type="button" class="btn">Add Food Item</button></a>
-        <table border="1">
+        <table border="1" id="retailerTable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -38,20 +35,20 @@
                     
                     if (foodItems != null) {
                         for (FoodItem item : foodItems) {
-                %>
-                <tr>
-                    <td><%= item.getId() %></td>
-                    <td><%= item.getName() %></td>
-                    <td><%= item.getExpirationDate() %></td>
-                    <td><%= item.getPrice() %></td>
-                    <td><%= item.isSurplus() %></td>
-                    <td><%= item.getListingType() %></td>
-                    <td><%= item.getQuantity() %></td>
-                    <td>
-                        <a href="updateItem.jsp?id=<%= item.getId() %>">Update</a>
-                    </td>
-                </tr>
-                <%
+			                %>
+			                <tr>
+			                    <td><%= item.getId() %></td>
+			                    <td><%= item.getName() %></td>
+			                    <td><%= item.getExpirationDate() %></td>
+			                    <td><%= item.getPrice() %></td>
+			                    <td><%= item.isSurplus() %></td>
+			                    <td><%= item.getListingType() %></td>
+			                    <td><%= item.getQuantity() %></td>
+			                    <td>
+			                        <a href="updateItem.jsp?id=<%= item.getId() %>">Update</a>
+			                    </td>
+			                </tr>
+			                <%
                         }
                     }
                 %>
