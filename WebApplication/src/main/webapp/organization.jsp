@@ -31,7 +31,7 @@
             List<FoodItem> foodItemsList = foodItemsDAO.retrieveAvailableDonations();
 
             if (foodItemsList.isEmpty()) {
-                out.println("<tr><td colspan='6'>No food items available for discount at the moment. Please check back later.</td></tr>");
+                out.println("<tr><td colspan='6'>No food items available for donation at the moment. Please check back later.</td></tr>");
             } else {
                 for (FoodItem item : foodItemsList) {
             %>

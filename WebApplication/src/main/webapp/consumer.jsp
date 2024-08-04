@@ -28,6 +28,7 @@
                     <%
                         FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
                         List<FoodItem> foodItemsList = foodItemsDAO.retrieveDiscountedItems();
+   
 
                         if (foodItemsList.isEmpty()) {
                             out.println("<tr><td colspan='4'>No food items available for discount at the moment. Please check back later.</td></tr>");

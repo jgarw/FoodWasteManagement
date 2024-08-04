@@ -37,6 +37,9 @@
 			
 			        <label for="expirationDate">Expiration Date:</label>
 			        <input type="date" id="expirationDate" name="expirationDate" value="<%= item.getExpirationDate() %>" required><br><br>
+			        
+			        <label for="quantity">Quantity:</label>
+            		<input type="number" id="quantity" name="quantity" step="1" required <%= item.getQuantity() %>><br><br>
 			
 			        <label for="price">Price:</label>
 			        <input type="number" id="price" name="price" step="0.01" value="<%= item.getPrice() %>" required><br><br>
@@ -63,12 +66,13 @@
             if ("POST".equalsIgnoreCase(request.getMethod())) {
                 String itemName = request.getParameter("itemName");
                 Date expirationDate = Utility.parseDate(request.getParameter("expirationDate"));
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
                 double price = Double.parseDouble(request.getParameter("price"));
                 boolean surplus = Boolean.parseBoolean(request.getParameter("surplus"));
                 String listingType = request.getParameter("listingType");
                 String retailerEmail = (String) session.getAttribute("username");
                 
-                dao.updateFoodItem(id, itemName, expirationDate, price, surplus, listingType, retailerEmail);
+                dao.updateFoodItem(id, itemName, expirationDate, quantity, price, surplus, listingType, retailerEmail);
                 response.sendRedirect("retailer.jsp");
             }
         %>

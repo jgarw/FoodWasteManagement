@@ -16,12 +16,12 @@ public class Claim {
 	     * name of the food item
 	     */
 	    int organization_id;
-	    
+
 	    /**
 	     * quantity claimed
 	     */
 	    int quantity;
-	    
+
 	    /**
 	     * Constructor for Claimed Items
 	     * @param claim_id
@@ -58,14 +58,14 @@ public class Claim {
 	    public void setClaim_id(int claim_id) {
 	        this.claim_id = claim_id;
 	    }
-	    
+
 	    /*
 	     * Getter for item id
 	     */
 	    public int getItem_id() {
 	    	return item_id;
 	    }
-	    
+
 	    /**
 	     * setter for item id
 	     * @param item_id
@@ -73,14 +73,14 @@ public class Claim {
 	    public void setItem_id(int item_id) {
 	    	this.item_id = item_id;
 	    }
-	    
+
 	    /*
 	     * get the email of the organization
 	     */
 	    public int getConsumer_id() {
 	    	return organization_id;
 	    }
-	    
+
 	    /**
 	     * set the organization email
 	     */
@@ -105,7 +105,7 @@ public class Claim {
 	        this.quantity = quantity;
 	    }
 
-	    
+
 	}
 
 

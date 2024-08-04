@@ -18,6 +18,9 @@
 
             <label for="expirationDate">Expiration Date:</label>
             <input type="date" id="expirationDate" name="expirationDate" required><br><br>
+            
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" step="1" required><br><br>
 
             <label for="price">Price:</label>
             <input type="number" id="price" name="price" step="0.01" required><br><br>
@@ -51,6 +54,7 @@
         <%
             if ("POST".equalsIgnoreCase(request.getMethod())) {
                 String itemName = request.getParameter("itemName");
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
                 Date expirationDate = Utility.parseDate(request.getParameter("expirationDate"));
                 double price = Double.parseDouble(request.getParameter("price"));
                 boolean surplus = Boolean.parseBoolean(request.getParameter("surplus"));
@@ -59,7 +63,7 @@
                 String retailerEmail = (String) session.getAttribute("username");
 
                 FoodItemsDAOImpl dao = new FoodItemsDAOImpl();
-                dao.addFoodItem(itemName, expirationDate, price, surplus, listingType, retailerEmail);
+                dao.addFoodItem(itemName, expirationDate, quantity, price, surplus, listingType, retailerEmail);
                 response.sendRedirect("retailer.jsp");
             }
         %>

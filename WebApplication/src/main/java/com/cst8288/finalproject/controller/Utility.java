@@ -1,6 +1,6 @@
 package com.cst8288.finalproject.controller;
 
-import java.sql.Date; 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -17,7 +17,7 @@ public class Utility {
         } catch (ParseException e) {
             System.err.println("Date parsing failed: " + e.getMessage());
         }
-        
+
         // Converting java.util.Date to java.sql.Date
         return new Date(utilDate.getTime());
     }

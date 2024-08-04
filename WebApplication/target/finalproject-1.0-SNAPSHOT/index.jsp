@@ -12,5 +12,9 @@
         <a href="register.jsp"><button class="btn">Register</button></a>
     </div>
 </div>
+
+    <footer>
+        <p>&copy; 2024 WeHateFoodWaste. All rights reserved.</p>
+    </footer>
 </body>
 </html>

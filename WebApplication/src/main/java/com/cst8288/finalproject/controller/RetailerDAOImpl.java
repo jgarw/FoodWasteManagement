@@ -23,10 +23,11 @@ public class RetailerDAOImpl implements UserTypeDAO{
      * @return The retailer_id corresponding to the given email.
      * @throws SQLException If there is any issue executing the query.
      */
-    public int getIdByEmail(String email) {
+    @Override
+	public int getIdByEmail(String email) {
         // This query assumes that the Users table and Retailers table are linked by user_id
         String query = "SELECT r.retailer_id FROM Retailers r JOIN Users u ON r.user_id = u.user_id WHERE u.email = ?";
-        
+
         int retailerId = 0;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, email);

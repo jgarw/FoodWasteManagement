@@ -10,6 +10,6 @@ public interface Subject {
      * @param message
      */
     public void notifyObservers(String message);
-    
+
 
 }

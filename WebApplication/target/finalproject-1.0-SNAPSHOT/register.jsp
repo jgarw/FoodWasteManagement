@@ -51,7 +51,7 @@
                 <td></td>
                 <td>
                     <button type="submit" class="btn">Submit</button>
-                    <a href="index.jsp"><button type="button" class="btn">Go Back</button></a>
+                    <a href="login.jsp"><button type="button" class="btn">Login Page</button></a>
                 </td>
             </tr>
         </table>
@@ -89,5 +89,9 @@ if ("post".equalsIgnoreCase(request.getMethod())) {
 }
 %>
 </div>
+
+    <footer>
+        <p>&copy; 2024 WeHateFoodWaste. All rights reserved.</p>
+    </footer>
 </body>
 </html>
