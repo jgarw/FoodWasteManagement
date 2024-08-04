@@ -213,12 +213,32 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 	    return foodItems;
 	}
 
-@Override
-public void updateFoodItem(String name, Date expirationDate, double price, boolean surplus, String listingType,
-		String retailerEmail) {
-	// TODO Auto-generated method stub
-	
-}
+	@Override
+	public void updateFoodItem(int itemId, String name, Date expirationDate, double price, boolean surplus, String listingType,
+			String retailerEmail) {
+
+		String query = "UPDATE FoodItems SET item_name = ?, expiration_date = ?, price = ?, surplus = ?, listing_type = ? WHERE item_id = ?";
+
+	    try (PreparedStatement statement = connection.prepareStatement(query)) {
+	        // Set the parameters for the PreparedStatement
+	        statement.setString(1, name);
+	        statement.setDate(2, expirationDate);
+	        statement.setDouble(3, price);
+	        statement.setBoolean(4, surplus);
+	        statement.setString(5, listingType);
+	        statement.setInt(6, itemId);
+
+	        // Execute the update
+	        int rowsAffected = statement.executeUpdate();
+	        if (rowsAffected > 0) {
+	            System.out.println("Food item updated successfully.");
+	        } else {
+	            System.out.println("No food item found with id: " + itemId);
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Error updating food item: " + e.getMessage());
+	    }
+	}
 
 /**
  * Retreive the quantity of a specific item
