@@ -14,7 +14,7 @@ public class SubscriberDAOImpl implements SubscriberDAO{
     /**
      * Constructor for SubscriberDAOImpl class
      * This constructor establishes a connection to the database when called.
-     * 
+     *
      * @return connection to the database from DBConnection class
      */
     public SubscriberDAOImpl(){
@@ -36,11 +36,11 @@ public class SubscriberDAOImpl implements SubscriberDAO{
 
 			//insert users email into email column
 			statement.setString(1, email);
-            
+
 
 			// execute the SQL statemetn
 			statement.executeUpdate();
-			
+
 			System.out.println("Successfully subscribed to food alerts!");
         }
         catch(SQLException e){

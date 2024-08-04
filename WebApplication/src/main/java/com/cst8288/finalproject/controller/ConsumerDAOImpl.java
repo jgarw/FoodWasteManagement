@@ -23,10 +23,11 @@ public class ConsumerDAOImpl implements UserTypeDAO{
      * @return The consumer_id corresponding to the given email.
      * @throws SQLException If there is any issue executing the query.
      */
-    public int getIdByEmail(String email) {
+    @Override
+	public int getIdByEmail(String email) {
         // This query assumes that the Users table and consumers table are linked by user_id
         String query = "SELECT c.consumer_id FROM consumers c JOIN Users u ON c.user_id = c.user_id WHERE c.email = ?";
-        
+
         int consumerId = 0;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, email);

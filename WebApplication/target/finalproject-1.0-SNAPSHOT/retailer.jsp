@@ -11,12 +11,9 @@
         <title>Retailer Page</title>
     </head>
     <body>
-    	<p> <% out.print((String) session.getAttribute("username")); %> </p>
-    	<p> <% RetailerDAOImpl dao = new RetailerDAOImpl(); 
-    	out.print(dao.getIdByEmail((String) session.getAttribute("username"))); %>
         <h1>Food Items</h1>
         <a href="createItems.jsp"><button type="button" class="btn">Add Food Item</button></a>
-        <table border="1">
+        <table border="1" id="retailerTable">
             <thead>
                 <tr>
                     <th>ID</th>

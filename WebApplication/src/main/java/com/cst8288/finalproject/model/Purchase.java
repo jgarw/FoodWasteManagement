@@ -16,12 +16,12 @@ public class Purchase {
      * name of the food item
      */
     int consumer_id;
-    
+
     /**
      * quantity purchased
      */
     int quantity;
-    
+
     /**
      * Constructor for Purchased Items
      * @param purchase_id
@@ -58,14 +58,14 @@ public class Purchase {
     public void setPurchase_id(int purchase_id) {
         this.purchase_id = purchase_id;
     }
-    
+
     /*
      * Getter for item id
      */
     public int getItem_id() {
     	return item_id;
     }
-    
+
     /**
      * setter for item id
      * @param item_id
@@ -73,14 +73,14 @@ public class Purchase {
     public void setItem_id(int item_id) {
     	this.item_id = item_id;
     }
-    
+
     /*
      * get the email of the consumer
      */
     public int getConsumer_id() {
     	return consumer_id;
     }
-    
+
     /**
      * set the consumer email
      */
@@ -105,6 +105,6 @@ public class Purchase {
         this.quantity = quantity;
     }
 
-    
+
 }
 

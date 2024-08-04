@@ -11,10 +11,10 @@ import com.cst8288.finalproject.model.UserFactory;
 
 /**
  * This class will act as the driver class that will execute the program.
- * 
+ *
  * Right now it is set up to allow a user to be registered into the database.
  */
-public class Main 
+public class Main
 {
     /**
      * main method that will drive the program.
@@ -89,17 +89,17 @@ public class Main
 
                 System.out.println("enter userType: ");
                 userType = scan.nextLine();
-                
-                //create a new user object with factory based on entered information 
+
+                //create a new user object with factory based on entered information
                 User newUser = UserFactory.createUser(userType, name, email, password, phone);
 
                 //insert new user into tables
                 dao.insertUser(newUser);
-            
+
             break;
 
         }
-        
+
         scan.close();
     }
 }
