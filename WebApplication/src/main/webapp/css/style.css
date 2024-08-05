@@ -81,6 +81,12 @@ form {
 
 table {
     width: 100%;
+    text-align: center;
+    table-layout: auto;
+}
+
+#expDate {
+	text-align: center;
 }
 
 #retailerTable {
