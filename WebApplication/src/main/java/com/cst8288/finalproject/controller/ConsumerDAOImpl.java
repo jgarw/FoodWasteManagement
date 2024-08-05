@@ -26,7 +26,7 @@ public class ConsumerDAOImpl implements UserTypeDAO{
     @Override
 	public int getIdByEmail(String email) {
         // This query assumes that the Users table and consumers table are linked by user_id
-        String query = "SELECT c.consumer_id FROM consumers c JOIN Users u ON c.user_id = c.user_id WHERE c.email = ?";
+        String query = "SELECT c.consumer_id FROM consumers c JOIN Users u ON c.user_id = u.user_id WHERE u.email = ?";
 
         int consumerId = 0;
         try (PreparedStatement statement = connection.prepareStatement(query)) {

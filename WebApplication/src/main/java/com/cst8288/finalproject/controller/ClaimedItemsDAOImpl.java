@@ -31,7 +31,7 @@ public class ClaimedItemsDAOImpl implements ClaimedItemsDAO{
      */
     @Override
     public void addClaim(int item_id, String organizationEmail, int quantity) {
-                String query = "INSERT INTO claims (item_id, organization_id, quantity) VALUES (?, ?, ?)";
+                String query = "INSERT INTO claims (item_id, org_id, quantity) VALUES (?, ?, ?)";
 
                 OrganizationDAOImpl organizationDAO = new OrganizationDAOImpl();
 
@@ -50,9 +50,9 @@ public class ClaimedItemsDAOImpl implements ClaimedItemsDAO{
 
     public List<Claim> retrieveAllClaims(String organizationEmail) {
         List<Claim> Claims = new ArrayList<>();
-        String query = "SELECT * FROM claims WHERE organization_id = ?";
+        String query = "SELECT * FROM claims WHERE org_id = ?";
 
-        ConsumerDAOImpl organizationDAO = new ConsumerDAOImpl();
+        OrganizationDAOImpl organizationDAO = new OrganizationDAOImpl();
         int organizationId = organizationDAO.getIdByEmail(organizationEmail);
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -63,7 +63,7 @@ public class ClaimedItemsDAOImpl implements ClaimedItemsDAO{
                 Claim Claim = new Claim();
                 Claim.setClaim_id(resultSet.getInt("Claim_id"));
                 Claim.setItem_id(resultSet.getInt("item_id"));
-                Claim.setConsumer_id(resultSet.getInt("organization_id"));
+                Claim.setConsumer_id(resultSet.getInt("org_id"));
                 Claim.setQuantity(resultSet.getInt("quantity"));
                 Claims.add(Claim);
             }

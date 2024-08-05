@@ -19,7 +19,7 @@
 <%@ include file="header.jsp" %>
 
 <div class="container">
-    <h1>Hello <%= request.getSession().getAttribute("username") %>!</h1>
+    <h1>Hello <%= request.getSession().getAttribute("name") %>!</h1>
     <br>
     <h2>Thank you for helping us battle food waste!</h2>
     <br>

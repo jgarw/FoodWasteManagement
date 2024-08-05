@@ -26,7 +26,7 @@ public class OrganizationDAOImpl implements UserTypeDAO{
     @Override
 	public int getIdByEmail(String email) {
         // This query assumes that the Users table and organizations table are linked by user_id
-        String query = "SELECT o.organization_id FROM organizations o JOIN Users u ON o.user_id = o.user_id WHERE o.email = ?";
+        String query = "SELECT o.org_id FROM organizations o JOIN Users u ON o.user_id = u.user_id WHERE u.email = ?";
 
         int organizationId = 0;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -34,7 +34,7 @@ public class OrganizationDAOImpl implements UserTypeDAO{
 
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next()) {
-                    organizationId = resultSet.getInt("organization_id");
+                    organizationId = resultSet.getInt("org_id");
                 } else {
                     throw new SQLException("organization not found with email: " + email);
                 }
