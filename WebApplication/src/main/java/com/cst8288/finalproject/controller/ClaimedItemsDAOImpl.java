@@ -41,13 +41,13 @@ public class ClaimedItemsDAOImpl implements ClaimedItemsDAO{
                     statement.setInt(3, quantity);
                     statement.executeUpdate();
                     System.out.println("Food Claim added successfully.");
-                    
+
                 } catch (SQLException e) {
                     System.out.println("Error adding food Claim: " + e.getMessage());
                 }
 
     }
-    
+
     public List<Claim> retrieveAllClaims(String organizationEmail) {
         List<Claim> Claims = new ArrayList<>();
         String query = "SELECT * FROM claims WHERE organization_id = ?";
@@ -74,4 +74,4 @@ public class ClaimedItemsDAOImpl implements ClaimedItemsDAO{
         return Claims;
     }
 }
-    
+

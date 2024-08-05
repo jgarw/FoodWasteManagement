@@ -8,7 +8,7 @@ import com.cst8288.finalproject.model.FoodItem;
 /**
  * This interface will define the methods used to interact with the FoodItems table.
  * These methods will only be available to users of type Retailer.
- * 
+ *
  * @see FoodItem
  */
 public interface FoodItemsDAO {
@@ -17,12 +17,14 @@ public interface FoodItemsDAO {
      * Method for adding a food item to the FoodItems table.
      * @param name
      * @param expirationDate
+     * @param quantity
      * @param price
      * @param surplus
      * @param listingType
      * @param retailerEmail
      */
-    public void addFoodItem(String name, Date expirationDate, double price, boolean surplus, String listingType, String retailerEmail);
+    public void addFoodItem(String name, Date expirationDate, int quantity, double price, boolean surplus, String listingType,
+            String retailerEmail);
 
     /**
      * Method for deleting a food item from the FoodItems table.
@@ -33,7 +35,7 @@ public interface FoodItemsDAO {
      * @param listingType
      * @param retailerEmail
      */
-    public void updateFoodItem(int itemId, String name, Date expirationDate, double price, boolean surplus, String listingType, String retailerEmail);
+    public void updateFoodItem(int itemId, String name, Date expirationDate, int quantity, double price, boolean surplus, String listingType, String retailerEmail);
 
     /**
      * Method for marking a food item as surplus in the FoodItems table.

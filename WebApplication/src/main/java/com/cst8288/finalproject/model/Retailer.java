@@ -3,7 +3,9 @@ package com.cst8288.finalproject.model;
 import java.sql.Date;
 import java.util.Scanner;
 
-import com.cst8288.finalproject.controller.*;
+import com.cst8288.finalproject.controller.FoodItemsDAO;
+import com.cst8288.finalproject.controller.FoodItemsDAOImpl;
+import com.cst8288.finalproject.controller.RetailerSubject;
 
 /**
  * This class extends the User class and provides a constructor for creating a Retailer object.
@@ -31,15 +33,15 @@ public class Retailer extends User{
        this.retailerSubject = RetailerSubject.getInstance();
 
     }
-    
+
     /**
      * Method for adding a food item to the retailers inventory
      * This is done by using the addFoodItem() method from FoodItemsDAO to insert into the FoodItems table
-     * 
+     *
      * @see FoodItemsDAOImpl for addFoddItems method logic
      */
     public void addInventory() {
-                
+
                 // Create a new FoodItemsDAOImpl object to interact with the FoodItems table
                 FoodItemsDAO inventory = new FoodItemsDAOImpl();
 
@@ -49,6 +51,8 @@ public class Retailer extends User{
                 System.out.println("Enter the name of the food item: ");
 
                 String foodItemName = scanner.nextLine();
+                
+                int quantity = 0;
 
                 // Prompt the user to enter the expiration date of the food item
                 System.out.println("Enter the expiration date of the food item (yyyy-mm-dd): ");
@@ -69,7 +73,7 @@ public class Retailer extends User{
 
 
                 // Call the addFoodItem method to add the food item to the FoodItems table
-                inventory.addFoodItem(foodItemName, itemExpirationDate, itemPrice, isItemSurplus, itemListingType, getEmail());
+                inventory.addFoodItem(foodItemName, itemExpirationDate, quantity, itemPrice, isItemSurplus, itemListingType, getEmail());
 
                 scanner.close();
 
@@ -77,9 +81,9 @@ public class Retailer extends User{
 
     /**
      * Method for updating a food item in the retailers inventory
-     * 
+     *
      * When marked as surplus, a notification is sent to all observers in Subscribers table by using the notifyObservers method from RetailerSubject
-     * 
+     *
      * @see RetailerSubject for notifyObservers method logic
      *
      * @param item_id
@@ -90,7 +94,7 @@ public class Retailer extends User{
 
         FoodItem item = inventory.retrieveFoodItem(item_id);
 
-        // Notify all observers of the change and mention the 
+        // Notify all observers of the change and mention the
         retailerSubject.notifyObservers("New hot food in your area! " + this.getName() + " just marked food item" +  item.name + " as surplus!");
     }
 

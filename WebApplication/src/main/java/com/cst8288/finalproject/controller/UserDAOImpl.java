@@ -6,11 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.cst8288.finalproject.model.*;
+import com.cst8288.finalproject.model.Consumer;
+import com.cst8288.finalproject.model.Organization;
+import com.cst8288.finalproject.model.Retailer;
+import com.cst8288.finalproject.model.User;
+import com.cst8288.finalproject.model.UserFactory;
 
 /**
  * This class implements the UserDAO interface and provides methods for creating, retrieving, updating, deleting and authenticating users in the database.
- * 
+ *
  * @see UserDAO
  */
 public class UserDAOImpl implements UserDAO{
@@ -20,14 +24,14 @@ public class UserDAOImpl implements UserDAO{
     /**
      * Constructor for UserDAOImpl class
      * This constructor establishes a connection to the database when called.
-     * 
+     *
      * @return connection to the database from DBConnection class
      */
     public UserDAOImpl(){
         //establish a database connection when constructor is called
         this.connection = DBConnection.getInstance().getConnection();
     }
-    
+
     /**
      * Method for creating a new user and inserting into Users table and underlying related tables (CONSUMERS, RETAILERS, ORGANIZATION).
      * @param user user object to be created
@@ -54,7 +58,7 @@ public class UserDAOImpl implements UserDAO{
 
             //insert users phone into phone column
             statement.setString(5, user.getPhone());
-            
+
 
 			// execute the SQL statemetn
 			statement.executeUpdate();
@@ -112,7 +116,7 @@ public class UserDAOImpl implements UserDAO{
                 String name = result.getString("name");
                 String password = result.getString("password");
                 String userType = result.getString("user_type");
-                String phone = result.getString("phone"); 
+                String phone = result.getString("phone");
 
                 //create a user object based on the fields retrieved from the database
                 selectedUser = UserFactory.createUser(userType, name, email, password, phone);
@@ -138,7 +142,7 @@ public class UserDAOImpl implements UserDAO{
      */
     @Override
     public void updateUser(String email, String name, String password, String phone) {
-        
+
         //create a query for updating the table
         String query = "UPDATE USERS SET name = ?, password = ?, phone = ? WHERE email = ?";
 
@@ -172,7 +176,7 @@ public class UserDAOImpl implements UserDAO{
         }catch(SQLException e){
             System.out.println("Error deleting user." + e.getMessage());
         }
-        
+
     }
 
     /**
@@ -196,7 +200,7 @@ public class UserDAOImpl implements UserDAO{
             return null;
         }
 
-        
+
 
     }
 

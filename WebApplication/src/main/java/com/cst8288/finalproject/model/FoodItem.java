@@ -122,7 +122,7 @@ public class FoodItem {
     }
 
     /**
-     * getter for surplus 
+     * getter for surplus
      * @return surplus
      */
     public boolean isSurplus() {

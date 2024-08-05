@@ -23,10 +23,11 @@ public class OrganizationDAOImpl implements UserTypeDAO{
      * @return The organization_id corresponding to the given email.
      * @throws SQLException If there is any issue executing the query.
      */
-    public int getIdByEmail(String email) {
+    @Override
+	public int getIdByEmail(String email) {
         // This query assumes that the Users table and organizations table are linked by user_id
         String query = "SELECT o.organization_id FROM organizations o JOIN Users u ON o.user_id = o.user_id WHERE o.email = ?";
-        
+
         int organizationId = 0;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, email);
