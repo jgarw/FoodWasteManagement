@@ -5,7 +5,7 @@ import com.cst8288.finalproject.model.User;
 /**
  * This interface provides methods for creating, retrieving, updating, deleting and authenticating users in the database.
  * It will be implemented by UserDAOImpl class.
- * 
+ *
  * @see UserDAOImpl
  */
 public interface UserDAO {

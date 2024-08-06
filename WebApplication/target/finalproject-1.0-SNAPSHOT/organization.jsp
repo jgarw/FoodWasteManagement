@@ -10,40 +10,52 @@
     <title>Organization Dashboard</title>
 </head>
 <body>
+<%@ include file="header.jsp" %>
+<div class="content">
 <div class="container">
-    <h1>Welcome, <%= request.getSession().getAttribute("userName") %>!</h1>
+    <h1>Welcome, <%= request.getSession().getAttribute("name") %>!</h1>
     <h2>Food Items Available for Donation</h2>
 
-    <%
-        FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
-        List<FoodItem> foodItemsList = foodItemsDAO.retrieveAvailableDonations();
-
-        if (foodItemsList.isEmpty()) {
-    %>
-        <p>No food items available for donation at the moment. Please check back later.</p>
-    <%
-        } else {
-    %>
+    <form action="claimItems.jsp" method="post" >
         <table>
             <tr>
+                <th>Select</th>
                 <th>Name</th>
                 <th>Expiration Date</th>
-                <th>Quantity</th>
+                <th>Listing Type</th>
+                <th>Available Quantity</th>
+                <th>Claim Quantity</th>
             </tr>
             <%
+            FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
+            List<FoodItem> foodItemsList = foodItemsDAO.retrieveAvailableDonations();
+
+            if (foodItemsList.isEmpty()) {
+                out.println("<tr><td colspan='6'>No food items available for donation at the moment. Please check back later.</td></tr>");
+            } else {
                 for (FoodItem item : foodItemsList) {
             %>
                 <tr>
+                    <td><input type="checkbox" name="selectedItems" value="<%= item.getId() %>"></td>
                     <td><%= item.getName() %></td>
                     <td><%= item.getExpirationDate() %></td>
+                    <td><%= item.getListingType() %></td>
                     <td><%= item.getQuantity() %></td>
+                    <td><input type="number" name="quantity_<%= item.getId() %>" min="1" max="<%= item.getQuantity() %>" value="1"></td>
                 </tr>
             <%
                 }
+            }
             %>
-        </table>
-    <%
-        }
-    %>
+          </table>
+          
+          <button type="submit">Claim Items</button>
+          
+    </form>
 </div>
+</div>
+<footer>
+    <p>&copy; 2024 WeHateFoodWaste. All rights reserved.</p>
+</footer>
+</body>
 </html>

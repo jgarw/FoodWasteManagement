@@ -16,7 +16,7 @@ public class UserObserver implements Observer{
      * List of Strings to hold the notifications that the user will receive.
      */
     private List<String> notifications;
-    
+
 
     /**
      * Constructor to create a UserObserver object with the email of the user.
@@ -29,7 +29,7 @@ public class UserObserver implements Observer{
 
     /**
      * Override Observer interfaces update method to provide implementation for receiving notifications about Food Alers
-     * @param message  
+     * @param message
      */
     @Override
     public void update(String message) {

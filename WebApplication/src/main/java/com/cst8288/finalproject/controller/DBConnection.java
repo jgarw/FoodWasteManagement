@@ -7,17 +7,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 /**
- * This class will hold all methods and variables for a database connection, 
+ * This class will hold all methods and variables for a database connection,
  * and will implement the singleton pattern to that only one instance can be instantiated at a time
  */
 public class DBConnection {
-	
+
 	private Connection connection;
 	private static DBConnection instance = null;
 
 	/**
 	 * private constructor to adhere to singleton pattern.
-	 * 
+	 *
 	 * This constructor will provide a database connection calling the 'connecFromFile' method.
 	 * This method will read the database.properties file and establish a connection to the database.
 	 */
@@ -32,7 +32,7 @@ public class DBConnection {
     private void connectFromFile(){
         //Ensure that you use the Properties class to load values from the database.properties file
         Properties dbConnection = new Properties();
-        
+
         //input path to read from database.properties file
         try (InputStream in = getClass().getClassLoader().getResourceAsStream("data/database.properties")) {
             if (in == null) {
@@ -54,14 +54,14 @@ public class DBConnection {
 
         //create serverUrl from database.properties values
         String serverUrl = "jdbc:"+dbms+"://"+host+":"+port+"/"+dbName;
-       
+
         try{
             //load JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             //Connect to mysql database using serverUrl, username and password obtained from database.properties
             connection = DriverManager.getConnection(serverUrl, username, password);
             System.out.println("connection successful!");
-            
+
         }
         //Catch exception thrown when trying to connect to database with serverUrl, username, password
         catch(SQLException e){
@@ -87,10 +87,10 @@ public class DBConnection {
 
 	/**
 	 * provide a method to get the connection after instantiating DBConnection instance
-	 * @return connection 
+	 * @return connection
 	 */
 	public Connection getConnection(){
 		return connection;
 	}
-	
+
 }
