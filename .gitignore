@@ -4,7 +4,6 @@
 
 #ignore data file that holds database properties
 **/database.properties
-**/target/classes/
 **/bin/
 
 
