@@ -41,7 +41,7 @@
 	                    <td><%= item.getId() %></td>
 	                    <td><%= item.getName() %></td>
 	                    <td><%= item.getExpirationDate() %></td>
-	                    <td><%= item.getPrice() %></td>
+	                    <td><%= "$" + item.getPrice() %></td>
 	                    <td><%= item.isSurplus() %></td>
 	                    <td><%= item.getListingType() %></td>
 	                    <td><%= item.getQuantity() %></td>
