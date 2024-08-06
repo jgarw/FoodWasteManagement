@@ -1,9 +1,12 @@
 #ignore .vscode file
-.vscode
-.vs/
+**/.vscode
+**/.vs/
 
 #ignore data file that holds database properties
-database.properties 
+**/database.properties
+**/target/
+**/bin/
+
 
 #ignore instructions folder
 Instructions/
