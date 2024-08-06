@@ -13,7 +13,7 @@
     <body>
         <h1>Food Items</h1>
         <a href="createItems.jsp"><button type="button" class="btn">Add Food Item</button></a>
-        	<div class="container">
+        	<div class="retailerContainer">
 	        <table border="1" id="retailerTable">
 	            <thead>
 	                <tr>
