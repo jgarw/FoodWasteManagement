@@ -15,7 +15,7 @@
 	        <h1>Create a New Item</h1>
 	        <form action="createItems.jsp" method="post">
 	            <label for="itemName">Item Name:</label><br>
-	            <input id="itemNameInput" type="text" id="itemName" name="itemName" required><br><br>
+	            <input type="text" id="itemName" name="itemName" required><br><br>
 	
 	            <label for="expirationDate">Expiration Date:</label>
 	            <input type="date" id="expirationDate" name="expirationDate" required><br><br>
