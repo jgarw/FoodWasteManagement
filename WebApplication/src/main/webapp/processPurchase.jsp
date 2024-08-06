@@ -43,16 +43,21 @@
             String paramName = parameterNames.nextElement();
             if (paramName.startsWith("quantity_")) {
                 int itemId = Integer.parseInt(paramName.split("_")[1]);
-                int quantity = Integer.parseInt(request.getParameter(paramName));
-
+                String quantityStr = request.getParameter(paramName);
+                int quantity = Integer.parseInt(quantityStr);
                 // Retrieve the item details from the database
                 FoodItem item = foodItemsDAO.retrieveFoodItem(itemId);
-                if (item != null && quantity <= item.getQuantity()) {
+                System.out.println("Retrieved item: " + item.getName() + " with available quantity: " + item.getQuantity());
+                
+                //quantity to buy must be greater than zero, and less than the total quantity of an item available
+                if (item != null && quantity > 0 && quantity <= item.getQuantity()) {
                     double itemTotalPrice = quantity * item.getPrice();
                     totalPrice += itemTotalPrice;
 
                     // Update the item quantity in the database
-                    foodItemsDAO.updateItemQuantity(itemId, item.getQuantity() - quantity);
+                    
+                    int updatedQuantity = (item.getQuantity() - quantity);
+                    foodItemsDAO.updateItemQuantity(itemId, updatedQuantity);
                     
                     // Record the purchase in the purchases table
                     purchasedItemsDAO.addPurchase(itemId, consumerEmail, quantity);

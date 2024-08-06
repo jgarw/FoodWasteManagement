@@ -46,9 +46,10 @@ public class FoodItem {
      * @param surplus boolean value for surplus food item
      * @param listingType listing type of the food item
      */
-    public FoodItem(String name, Date expirationDate, double price, boolean surplus, String listingType) {
+    public FoodItem(String name, Date expirationDate, int quantity, double price, boolean surplus, String listingType) {
         this.name = name;
         this.expirationDate = expirationDate;
+        this.quantity = quantity;
         this.price = price;
         this.surplus = surplus;
         this.listingType = listingType;
