@@ -94,6 +94,10 @@ table {
     color: white;
 }
 
+#itemNameInput {
+	width: 250px;
+}
+
 td {
     padding: 10px;
     vertical-align: middle;
