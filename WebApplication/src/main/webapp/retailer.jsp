@@ -33,16 +33,28 @@
 	                	String retailerEmail = (String) session.getAttribute("username");
 	
 	                    List<FoodItem> foodItems = foodItemsDao.retrieveAllFoodItems(retailerEmail);
-	                    
+	                       
 	                    if (foodItems != null) {
 	                        for (FoodItem item : foodItems) {
+	                        	String surplusString = "";
+	                        	
+	                        	if (item.isSurplus()) {
+			                    	surplusString = "Yes";
+			                    }
+			                    else if (!item.isSurplus()) {
+			                    	surplusString = "No";
+			                    }
+			                    else {
+			                    	surplusString = "Error";
+			                    }
 	                %>
+
 	                <tr>
 	                    <td><%= item.getId() %></td>
 	                    <td><%= item.getName() %></td>
 	                    <td><%= item.getExpirationDate() %></td>
 	                    <td><%= "$" + item.getPrice() %></td>
-	                    <td><%= item.isSurplus() %></td>
+	                    <td><%= surplusString %></td>
 	                    <td><%= item.getListingType() %></td>
 	                    <td><%= item.getQuantity() %></td>
 	                    <td>
