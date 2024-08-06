@@ -41,7 +41,7 @@
                         <td>$<%= item.getPrice() %></td>
                         <td>
                             <input type="number" name="quantity_<%= item.getId() %>" 
-                                   min="1" max="<%= item.getQuantity() %>" value="1" 
+                                   min="0" max="<%= item.getQuantity() %>" value="0" 
                                    class="item" data-price="<%= item.getPrice() %>"
                                    onchange="calculateTotal()">
                         </td>

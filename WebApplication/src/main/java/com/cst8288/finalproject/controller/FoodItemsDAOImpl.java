@@ -35,7 +35,7 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
     @Override
     public void addFoodItem(String name, Date expirationDate, int quantity, double price, boolean surplus, String listingType,
             String retailerEmail) {
-                String query = "INSERT INTO FoodItems (item_name, expiration_date, quantity, price, surplus, listing_type, retailer_id) VALUES (?, ?, ?, ?, ?, ?)";
+                String query = "INSERT INTO FoodItems (item_name, expiration_date, quantity, price, surplus, listing_type, retailer_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                 //create a RetailerDAOImpl object to get the retailer ID from the email, then enter ID into fooditem table
                 RetailerDAOImpl retailerDAO = new RetailerDAOImpl();
@@ -62,12 +62,13 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
      * @param itemId The ID of the food item to update.
      * @param newQuantity The new quantity to set.
      */
-    public void updateItemQuantity(int itemId, int newQuantity) throws SQLException {
-        String query = "UPDATE FoodItems SET quantity = ? WHERE id = ?";
+    public void updateItemQuantity(int itemId, int newQuantity) {
+        String query = "UPDATE FoodItems SET quantity = ? WHERE item_id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, newQuantity);
             statement.setInt(2, itemId);
+            statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error updating item quantity: " + e.getMessage());
         }
@@ -90,11 +91,12 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
                 if (rs.next()) {
                     String name = rs.getString("item_name");
                     Date expirationDate = rs.getDate("expiration_date");
+                    int quantity = rs.getInt("quantity");
                     double price = rs.getDouble("price");
                     boolean surplus = rs.getBoolean("surplus");
                     String listingType = rs.getString("listing_type");
 
-                    foodItem = new FoodItem(name, expirationDate, price, surplus, listingType);
+                    foodItem = new FoodItem(name, expirationDate, quantity, price, surplus, listingType);
                 } else {
                     System.out.println("No food item found with id: " + id);
                 }
@@ -242,24 +244,24 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 	    }
 	}
 
-/**
- * Retreive the quantity of a specific item
- * @param itemId
- * @return
- */
-public int getCurrentQuantity(int itemId) {
-    String query = "SELECT quantity FROM FoodItems WHERE id = ?";
-    try (PreparedStatement statement = connection.prepareStatement(query)) {
-        statement.setInt(1, itemId);
-        try (ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                return resultSet.getInt("quantity");
-            }
-        }
-    } catch (SQLException e) {
-        System.out.println("Error retrieving current quantity: " + e.getMessage());
-    }
-    return 0; // Or handle error appropriately
-}
+	/**
+	 * Retreive the quantity of a specific item
+	 * @param itemId
+	 * @return
+	 */
+	public int getCurrentQuantity(int itemId) {
+	    String query = "SELECT quantity FROM FoodItems WHERE item_id = ?";
+	    try (PreparedStatement statement = connection.prepareStatement(query)) {
+	        statement.setInt(1, itemId);
+	        try (ResultSet resultSet = statement.executeQuery()) {
+	            if (resultSet.next()) {
+	                return resultSet.getInt("quantity");
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Error retrieving current quantity: " + e.getMessage());
+	    }
+	    return 0; // Or handle error appropriately
+	}
 
 }
