@@ -40,7 +40,7 @@
 				        <input type="date" id="expirationDate" name="expirationDate" value="<%= item.getExpirationDate() %>" required><br><br>
 				        
 				        <label for="quantity">Quantity:</label>
-	            		<input type="number" id="quantity" name="quantity" step="1" required <%= item.getQuantity() %>><br><br>
+	            		<input type="number" id="quantity" name="quantity" step="1" value= <%= item.getQuantity() %>><br><br>
 				
 				        <label for="price">Price:</label>
 				        <input type="number" id="price" name="price" step="0.01" value="<%= item.getPrice() %>" required><br><br>
