@@ -65,6 +65,17 @@ body {
     text-align: center;
 }
 
+/* Container for fooditems table */
+.retailerContainer {
+	width: 90%;
+	margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
 /* Style for headers */
 h2 {
     text-align: center;
@@ -92,6 +103,10 @@ table {
 #retailerTable {
 	background-color: #45a049;
     color: white;
+}
+
+#itemName {
+	width: 250px;
 }
 
 td {

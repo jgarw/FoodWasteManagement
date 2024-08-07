@@ -22,7 +22,6 @@ com\cst8288\finalproject\controller\ConsumerDAOImpl.class
 com\cst8288\finalproject\model\Organization.class
 com\cst8288\finalproject\controller\ClaimedItemsDAOImpl.class
 com\cst8288\finalproject\controller\SubscriberDAO.class
-com\cst8288\finalproject\view\Main.class
 com\cst8288\finalproject\controller\RetailerSubject.class
 com\cst8288\finalproject\controller\UserTypeDAO.class
 com\cst8288\finalproject\model\UserFactory.class
