@@ -33,11 +33,14 @@
 	                	String retailerEmail = (String) session.getAttribute("username");
 	
 	                    List<FoodItem> foodItems = foodItemsDao.retrieveAllFoodItems(retailerEmail);
-	                       
+	                    
+	                    // Checks if the food items database table contains any food items, and displays them only if it does
 	                    if (foodItems != null) {
+	                    	// Displays the attributes of each item in each row of the table
 	                        for (FoodItem item : foodItems) {
 	                        	String surplusString = "";
 	                        	
+	                        	// Displays surplus as "Yes", "No" rather than boolean values
 	                        	if (item.isSurplus()) {
 			                    	surplusString = "Yes";
 			                    }
