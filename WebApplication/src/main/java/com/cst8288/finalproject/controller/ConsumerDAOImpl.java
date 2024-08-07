@@ -10,9 +10,15 @@ import java.sql.SQLException;
  * It will implement the UserTypeDAO interface to use the getIdFromEmail method.
  */
 public class ConsumerDAOImpl implements UserTypeDAO{
-
+	
     private Connection connection;
 
+    /**
+    * Constructor for ConsumerDAOImpl class
+    * This constructor establishes a connection to the database when called.
+    *
+    * @return connection to the database from DBConnection class
+    */
     public ConsumerDAOImpl() {
         connection = DBConnection.getInstance().getConnection();
     }

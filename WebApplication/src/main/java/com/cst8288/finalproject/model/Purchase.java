@@ -1,5 +1,7 @@
 package com.cst8288.finalproject.model;
-
+/**
+ * Class that represents a food item purchased at a discount by a consumer
+ */
 public class Purchase {
 
     /**

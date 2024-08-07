@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="FoodManagement">
+    <output-path>$PROJECT_DIR$/out/artifacts/FoodManagement</output-path>
+    <root id="archive" name="FoodManagement.war" />
+  </artifact>
+</component>

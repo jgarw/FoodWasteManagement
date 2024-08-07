@@ -24,14 +24,11 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 
     /**
      * Method for adding a food item to the FoodItems table.
-     *
-     *
-     *
-     * THE WAY ITS SET UP RIGHT NOW:
-     * WHEN A RETAILER CALLS THIS TO ADD A FOOD ITEM TO THEIR INVENTORY,
-     * IT AUTOMATICALLY PLUGS IN THEIR EMAIL THROUGH THE METHOD HEADER (USE RETAILER.GETEMAIL()),
-     * THEN USES THE GETRETAILERIDBYEMAIL METHOD FROM RETAILERDAOIMPL TO GET THE RETAILER ID AND INSERT THAT INTO FOODITEMS TABLE
-     */
+     * 
+	 * When a retailer calls this method to add a food item to their inventory,
+	 * it automatically plugs in their email through the method header (use retailer.getEmail()),
+	 * then uses the getRetailerIdByEmail method from RetailerDAOImpl to get the retailer ID and insert that into the FoodItems table.
+	 */
     @Override
     public void addFoodItem(String name, Date expirationDate, int quantity, double price, boolean surplus, String listingType,
             String retailerEmail) {
@@ -167,7 +164,7 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 	 */
 	public List<FoodItem> retrieveAvailableDonations() {
 	    List<FoodItem> foodItems = new ArrayList<>();
-	    String query = "SELECT * FROM FoodItems where listing_type = 'donation' ";
+	    String query = "SELECT * FROM FoodItems where quantity > 0 AND listing_type = 'donation' ";
 
 	    try (PreparedStatement statement = connection.prepareStatement(query);
 	         ResultSet resultSet = statement.executeQuery()) {
@@ -194,7 +191,7 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 	 */
 	public List<FoodItem> retrieveDiscountedItems() {
 	    List<FoodItem> foodItems = new ArrayList<>();
-	    String query = "SELECT * FROM FoodItems where listing_type = 'discounted'";
+	    String query = "SELECT * FROM FoodItems where quantity > 0 AND listing_type = 'discounted'";
 
 	    try (PreparedStatement statement = connection.prepareStatement(query);
 	         ResultSet resultSet = statement.executeQuery()) {
@@ -216,6 +213,17 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 	    return foodItems;
 	}
 
+	/**
+	 * Update all parameters of an item based on itemId
+	 * @param itemId the ID of the food item to update
+	 * @param name the new name of the food item
+	 * @param expirationDate the new expiration date of the food item
+	 * @param quantity the new quantity of the food item
+	 * @param price the new price of the food item
+	 * @param surplus whether the food item is surplus or not
+	 * @param listingType the new listing type of the food item
+	 * @param retailerEmail the email of the retailer updating the food item
+	 */
 	@Override
 	public void updateFoodItem(int itemId, String name, Date expirationDate, int quantity, double price, boolean surplus, String listingType,
 			String retailerEmail) {
@@ -243,11 +251,36 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 	        System.out.println("Error updating food item: " + e.getMessage());
 	    }
 	}
+	
+	/**
+	 * Delete an item based on itemId
+	 * @param itemId
+	 */
+	@Override
+	public void deleteFoodItem(int itemId) {
+	    String query = "DELETE FROM FoodItems WHERE item_id = ?";
+
+	    try (PreparedStatement statement = connection.prepareStatement(query)) {
+	        // Set the parameter for the PreparedStatement
+	        statement.setInt(1, itemId);
+
+	        // Execute the update
+	        int rowsAffected = statement.executeUpdate();
+	        if (rowsAffected > 0) {
+	            System.out.println("Food item deleted successfully.");
+	        } else {
+	            System.out.println("No food item found with id: " + itemId);
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Error deleting food item: " + e.getMessage());
+	    }
+	}
+
 
 	/**
-	 * Retreive the quantity of a specific item
-	 * @param itemId
-	 * @return
+	 * Retrieve the quantity of a specific item
+	 * @param itemId the ID of the food item to update
+	 * @return The item's quantity
 	 */
 	public int getCurrentQuantity(int itemId) {
 	    String query = "SELECT quantity FROM FoodItems WHERE item_id = ?";

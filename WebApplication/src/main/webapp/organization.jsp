@@ -10,38 +10,47 @@
     <title>Organization Dashboard</title>
 </head>
 <body>
+<!-- include pre-made header file-->
 <%@ include file="header.jsp" %>
 <div class="content">
+<!-- add all items to container-->
 <div class="container">
     <h1>Welcome, <%= request.getSession().getAttribute("name") %>!</h1>
     <h2>Food Items Available for Donation</h2>
-
+    <!-- create a form to allow the organization to claim items -->
     <form action="claimItems.jsp" method="post" >
+        <!-- create a table to display the available food items -->
         <table>
+            <!-- create table headers -->
             <tr>
-                <th>Select</th>
                 <th>Name</th>
                 <th>Expiration Date</th>
-                <th>Listing Type</th>
                 <th>Available Quantity</th>
                 <th>Claim Quantity</th>
             </tr>
             <%
+            // instantiate a FoodItemsDAOImpl object
             FoodItemsDAOImpl foodItemsDAO = new FoodItemsDAOImpl();
+
+            // retrieve all available food items from the database
             List<FoodItem> foodItemsList = foodItemsDAO.retrieveAvailableDonations();
 
+            // check if the list is empty, if so, display a message to the user
             if (foodItemsList.isEmpty()) {
                 out.println("<tr><td colspan='6'>No food items available for donation at the moment. Please check back later.</td></tr>");
             } else {
+                // iterate through the list of food items and display them in the table
                 for (FoodItem item : foodItemsList) {
-            %>
+            %>  
                 <tr>
-                    <td><input type="checkbox" name="selectedItems" value="<%= item.getId() %>"></td>
+                    <!-- display item name -->
                     <td><%= item.getName() %></td>
+                    <!-- display item expiration date -->
                     <td><%= item.getExpirationDate() %></td>
-                    <td><%= item.getListingType() %></td>
+                    <!-- display item quantity -->
                     <td><%= item.getQuantity() %></td>
-                    <td><input type="number" name="quantity_<%= item.getId() %>" min="1" max="<%= item.getQuantity() %>" value="1"></td>
+                    <!-- create input field for organization to claim quantity -->
+                    <td><input type="number" name="quantity_<%= item.getId() %>" min="0" max="<%= item.getQuantity() %>" value="0"></td>
                 </tr>
             <%
                 }
@@ -54,6 +63,7 @@
     </form>
 </div>
 </div>
+<!-- include pre-made footer file-->
 <footer>
     <p>&copy; 2024 WeHateFoodWaste. All rights reserved.</p>
 </footer>

@@ -13,6 +13,12 @@ public class RetailerDAOImpl implements UserTypeDAO{
 
     private Connection connection;
 
+    /**
+     * Constructor for RetailerDAOImpl class
+     * This constructor establishes a connection to the database when called.
+     *
+     * @return connection to the database from DBConnection class
+     */
     public RetailerDAOImpl() {
         connection = DBConnection.getInstance().getConnection();
     }

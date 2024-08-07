@@ -55,15 +55,7 @@ public class RetailerSubject implements Subject {
         }
     }
 
-    /**
-     * Method to send a notification to a user.
-     * @param email the email of the user to send the notification to
-     * @param message the message to send to the user
-     */
-    public void sendNotification(String email, String message){
-        //implement logic here to send notification to user
-        System.out.println("Sending notification to: " + email + " with message: " + message);
-    }
+ 
 
 
 

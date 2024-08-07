@@ -65,6 +65,17 @@ body {
     text-align: center;
 }
 
+/* Container for fooditems table */
+.retailerContainer {
+	width: 90%;
+	margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
 /* Style for headers */
 h2 {
     text-align: center;
@@ -81,11 +92,21 @@ form {
 
 table {
     width: 100%;
+    text-align: center;
+    table-layout: auto;
+}
+
+#expDate {
+	text-align: center;
 }
 
 #retailerTable {
 	background-color: #45a049;
     color: white;
+}
+
+#itemName {
+	width: 250px;
 }
 
 td {
@@ -121,7 +142,13 @@ button:hover {
 
 /* Ensure links are not underlined */
 a {
+	color: #0000EE;
     text-decoration: none;
+}
+
+/* Ensures that links that are visited do not change color */
+a:visited {
+	color: #0000EE;
 }
 
 /* Specific styles for index.jsp */

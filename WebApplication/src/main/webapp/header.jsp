@@ -8,14 +8,17 @@
 <div class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 1px 1px; background-color: rgba(255, 255, 255, 0.9); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
     <h1 class="header-title">WeHateFoodWaste</h1>
     <div class="header-right">
+        <!-- check if the backUrl attribute is set -->
         <% 
             String backUrl = (String) request.getAttribute("backUrl");
             if (backUrl != null) { 
         %>
+        <!-- create a back button -->
             <a href="<%= backUrl %>"><button type="button">Back</button></a>
         <% 
             } 
         %>
+        <!-- create a logout button -->
         <form action="logout.jsp" method="post">
             <button type="submit">Logout</button>
         </form>
