@@ -14,42 +14,59 @@
 	<%
     request.setAttribute("backUrl", "retailer.jsp");
 %>
+	<!-- include pre-made header file-->
 	 <%@ include file="header.jsp" %>
+		<!-- add all items to container-->
 		<div class="container">
 			<h1>Update Item</h1>
-			<%
+			<%	
+				// Retrieve the item ID from the request and store it in a variable
 		        String itemId = request.getParameter("id");
 				int id = 0;
+
+				// Instantiate a FoodItemsDAOImpl object
 		        FoodItemsDAOImpl dao = new FoodItemsDAOImpl();
+
+				// create a FoodItem object and set it to null
 		        FoodItem item = null;
 		        
+				// Check if item ID is not null
 		        if (itemId != null) {
+					// Parse the item ID to an integer
 		            id = Integer.parseInt(itemId);
+					// Retrieve the item from the database
 		            item = dao.retrieveFoodItem(id);
 		        }
 		
 		        // Check if item is found
 		        if (item != null) {
 			    	%>
-			        <form method="post">			
+					<!-- create a form to allow the retailer to update the item -->
+			        <form method="post">	
+						<!-- create input field for item name -->		
 				        <label for="itemName">Item Name:</label>
 				        <input type="text" id="itemName" name="itemName" value="<%= item.getName() %>" required><br><br>
-				
+						
+						<!-- create input field for item expiration date -->
 				        <label for="expirationDate">Expiration Date:</label>
 				        <input type="date" id="expirationDate" name="expirationDate" value="<%= item.getExpirationDate() %>" required><br><br>
 				        
+						<!-- create input field for item quantity -->
 				        <label for="quantity">Quantity:</label>
 	            		<input type="number" id="quantity" name="quantity" step="1" value= <%= item.getQuantity() %>><br><br>
 				
+						<!-- create input field for item price -->
 				        <label for="price">Price:</label>
 				        <input type="number" id="price" name="price" step="0.01" value="<%= item.getPrice() %>" required><br><br>
 				
+						<!-- create radio buttons for surplus -->
 				        <label>Surplus:</label>
 				        <input type="radio" id="surplusYes" name="surplus" value="true" <%= item.isSurplus() ? "checked" : "" %>>
 				        <label for="surplusYes">Yes</label>
 				        <input type="radio" id="surplusNo" name="surplus" value="false" <%= !item.isSurplus() ? "checked" : "" %>>
 				        <label for="surplusNo">No</label><br><br>
-				
+						
+						<!-- create radio buttons for listing type -->
 				        <% if (item.isSurplus()) { %>
 				            <label>Listing Type:</label>
 				            <input type="radio" id="discounted" name="listingType" value="discounted" <%= "discounted".equals(item.getListingType()) ? "checked" : "" %>>
@@ -57,20 +74,35 @@
 				            <input type="radio" id="donation" name="listingType" value="donation" <%= "donation".equals(item.getListingType()) ? "checked" : "" %>>
 				            <label for="donation">Donation</label><br><br>
 				        <% } %>
-				
+							
 				        <input type="submit" value="Update">
 				    </form>
 				<% } %>
 		    
 			<%
 	            if ("POST".equalsIgnoreCase(request.getMethod())) {
+					// Retrieve the item name from the request and store it in a variable
 	                String itemName = request.getParameter("itemName");
+
+					// Retrieve the expiration date from the request and store it in a variable
 	                Date expirationDate = Utility.parseDate(request.getParameter("expirationDate"));
+
+					// Retrieve the quantity from the request and store it in a variable
 	                int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+					// Retrieve the price from the request and store it in a variable
 	                double price = Double.parseDouble(request.getParameter("price"));
+
+					// Retrieve the surplus from the request and store it in a variable
 	                boolean surplus = Boolean.parseBoolean(request.getParameter("surplus"));
+
+					// Retrieve the listing type from the request and store it in a variable
 	                String listingType = request.getParameter("listingType");
+
+					// Retrieve the retailer email from the session and store it in a variable
 	                String retailerEmail = (String) session.getAttribute("username");
+
+					// Initialize a boolean variable to store the validity of the input
 	                boolean isValid = true;
 
 	                // Validate the input
