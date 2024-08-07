@@ -194,7 +194,7 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 	 */
 	public List<FoodItem> retrieveDiscountedItems() {
 	    List<FoodItem> foodItems = new ArrayList<>();
-	    String query = "SELECT * FROM FoodItems where listing_type = 'discounted'";
+	    String query = "SELECT * FROM FoodItems where quantity > 0 AND listing_type = 'discounted'";
 
 	    try (PreparedStatement statement = connection.prepareStatement(query);
 	         ResultSet resultSet = statement.executeQuery()) {
