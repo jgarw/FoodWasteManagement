@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.cst8288.finalproject.controller.*" %>
 <%@ page import="com.cst8288.finalproject.model.*" %>
 <%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,6 +11,7 @@
         <title>Retailer Page</title>
     </head>
     <body>
+   <%@ include file="header.jsp" %>
         <h1>Food Items</h1>
         <a href="createItems.jsp"><button type="button" class="btn">Add Food Item</button></a>
         	<div class="retailerContainer">
