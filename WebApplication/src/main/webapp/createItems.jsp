@@ -11,31 +11,37 @@
         <title>Create an item</title>
     </head>
     <body>
-    	<%
-    request.setAttribute("backUrl", "retailer.jsp");
-%>
+		<!-- set the backUrl attribute to the retailer.jsp page -->
+    	<% request.setAttribute("backUrl", "retailer.jsp"); %>
+		<!-- include the pre-made header file -->
 	 <%@ include file="header.jsp" %>
+		<!-- place items inside container -->
     	<div class="container">
 	        <h1>Create a New Item</h1>
+			<!-- create a form to allow the retailer to input the item's information -->
 	        <form action="createItems.jsp" method="post">
+
+				<!-- create input field for item name -->
 	            <label for="itemName">Item Name:</label><br>
 	            <input type="text" id="itemName" name="itemName" required><br><br>
-	
+				<!-- create input field for expiration date -->
 	            <label for="expirationDate">Expiration Date:</label>
 	            <input type="date" id="expirationDate" name="expirationDate" required><br><br>
-	            
+	            <!-- create input field for quantity -->
 	            <label for="quantity">Quantity:</label>
 	            <input type="number" id="quantity" name="quantity" step="1" required><br><br>
-	
+				<!-- create input field for price -->
 	            <label for="price">Price:</label>
 	            <input type="number" id="price" name="price" step="0.01" required><br><br>
-	
+				
+				<!-- create radio buttons for surplus -->
 	            <label>Surplus:</label>
 	            <input type="radio" id="surplusYes" name="surplus" value="true">
 	            <label for="surplusYes">Yes</label>
 	            <input type="radio" id="surplusNo" name="surplus" value="false">
 	            <label for="surplusNo">No</label><br><br>
-	
+				
+				<!-- create radio buttons for listing type -->
                 <label>Listing Type:</label>
                 <input type="radio" id="discounted" name="listingType" value="discounted">
                 <label for="discounted">Discounted</label>
@@ -43,7 +49,7 @@
                 <label for="donation">Donation</label><br><br>
                 <input type="radio" id="regular" name="listingType" value="regular">
                 <label for="regular">Regular</label><br><br>
-	
+				
 	            <input type="submit" value="Create">
 	        </form>
 	
@@ -55,14 +61,31 @@
 	        --%>
 	        <%
 	            if ("POST".equalsIgnoreCase(request.getMethod())) {
+					// store the itemName from the form in a variable
 	                String itemName = request.getParameter("itemName");
+
+					// store the quantity from the form in a variable
 	                int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+					// store the expiration date from the form in a variable
 	                Date expirationDate = Utility.parseDate(request.getParameter("expirationDate"));
+
+					// store the price from the form in a variable
 	                double price = Double.parseDouble(request.getParameter("price"));
+
+					// store the surplus from the form in a variable
 	                boolean surplus = Boolean.parseBoolean(request.getParameter("surplus"));
+
+					// store the listing type from the form in a variable
 	                String listingType = request.getParameter("listingType");
+
+					// store the discount price from the form in a variable
 	                String discountPrice = request.getParameter("discountPrice");
+
+					// store the donation price from the form in a variable
 	                String retailerEmail = (String) session.getAttribute("username");
+
+					// create a boolean variable to store the validity of the input
 	                boolean isValid = true;
 
 	                // Validate the input
@@ -79,6 +102,7 @@
 	                if (quantity < 0){
 	                	out.println("<p>Please enter quantity greater than zero.</p>");
 	                }else{
+					// add the item to the database using the addFoodItem method
 	                dao.addFoodItem(itemName, expirationDate, quantity, price, surplus, listingType, retailerEmail);
 		                response.sendRedirect("retailer.jsp");
 	                } 
