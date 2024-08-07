@@ -42,42 +42,76 @@
 		        if (item != null) {
 			    	%>
 					<!-- create a form to allow the retailer to update the item -->
-			        <form method="post">	
-						<!-- create input field for item name -->		
-				        <label for="itemName">Item Name:</label>
-				        <input type="text" id="itemName" name="itemName" value="<%= item.getName() %>" required><br><br>
+			        <form method="post">
+			        
+			        <table>
+			        	
+			        	<tr>
+				        	<td>
+								<!-- create input field for item name -->		
+					        	<label for="itemName">Item Name:</label>
+					        	<input type="text" id="itemName" name="itemName" value="<%= item.getName() %>" required><br><br>
+							</td>
+						</tr>
 						
-						<!-- create input field for item expiration date -->
-				        <label for="expirationDate">Expiration Date:</label>
-				        <input type="date" id="expirationDate" name="expirationDate" value="<%= item.getExpirationDate() %>" required><br><br>
+						<tr>
+							<td>
+								<!-- create input field for item expiration date -->
+						        <label for="expirationDate">Expiration Date:</label>
+						        <input type="date" id="expirationDate" name="expirationDate" value="<%= item.getExpirationDate() %>" required><br><br>
+					        </td>
+				        </tr>
 				        
-						<!-- create input field for item quantity -->
-				        <label for="quantity">Quantity:</label>
-	            		<input type="number" id="quantity" name="quantity" step="1" value= <%= item.getQuantity() %>><br><br>
-				
-						<!-- create input field for item price -->
-				        <label for="price">Price:</label>
-				        <input type="number" id="price" name="price" step="0.01" value="<%= item.getPrice() %>" required><br><br>
-				
-						<!-- create radio buttons for surplus -->
-				        <label>Surplus:</label>
-				        <input type="radio" id="surplusYes" name="surplus" value="true" <%= item.isSurplus() ? "checked" : "" %>>
-				        <label for="surplusYes">Yes</label>
-				        <input type="radio" id="surplusNo" name="surplus" value="false" <%= !item.isSurplus() ? "checked" : "" %>>
-				        <label for="surplusNo">No</label><br><br>
+				        <tr>
+					        <td>
+								<!-- create input field for item quantity -->
+					        	<label for="quantity">Quantity:</label>
+		            			<input type="number" id="quantity" name="quantity" step="1" value= <%= item.getQuantity() %>><br><br>
+							</td>
+						</tr>
 						
-						<!-- create radio buttons for listing type -->
-				        <% if (item.isSurplus()) { %>
-				            <label>Listing Type:</label>
-				            <input type="radio" id="discounted" name="listingType" value="discounted" <%= "discounted".equals(item.getListingType()) ? "checked" : "" %>>
-				            <label for="discounted">Discounted</label>
-				            <input type="radio" id="donation" name="listingType" value="donation" <%= "donation".equals(item.getListingType()) ? "checked" : "" %>>
-				            <label for="donation">Donation</label><br><br>
+						<tr>
+							<td>
+								<!-- create input field for item price -->
+						        <label for="price">Price:</label>
+						        <input type="number" id="price" name="price" step="0.01" value="<%= item.getPrice() %>" required><br><br>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+							<!-- create radio buttons for surplus -->
+						        <label>Surplus:</label>
+						        <input type="radio" id="surplusYes" name="surplus" value="true" <%= item.isSurplus() ? "checked" : "" %>>
+						        <label for="surplusYes">Yes</label>
+						        <input type="radio" id="surplusNo" name="surplus" value="false" <%= !item.isSurplus() ? "checked" : "" %>>
+						        <label for="surplusNo">No</label><br><br>
+							</td>
+						</tr>
+						
+						
+						<%-- <!-- create radio buttons for listing type -->
+				        <% if (item.isSurplus()) { %> --%>
+				        <tr>
+							<td>
+				                <label>Listing Type:</label>
+				                	<select name="listingType" id="itemName" required>
+				                        <option value="regular">Regular</option>
+				                        <option value="discount">Discount</option>
+				                        <option value="donation">Donation</option>
+				                    </select>
+			                </td>
+		                </tr>
+		          
 				        <% } %>
-							
-				        <input type="submit" value="Update">
+						<tr>
+							<td>
+					        	<button type="submit">Update</button>
+					        </td>
+				        </tr>
+				        </table>
 				    </form>
-				<% } %>
+				<%-- <% } %> --%>
 		    
 			<%
 	            if ("POST".equalsIgnoreCase(request.getMethod())) {
@@ -106,7 +140,7 @@
 	                boolean isValid = true;
 
 	                // Validate the input
-	                if (!surplus && !"regular".equals(listingType)) {
+	                if (!surplus && !"regular".equalsIgnoreCase(listingType)) {
 	                    isValid = false;
 	                    out.print("<p style='color:red;'>Invalid Input: Only surplus items can be discount or donation.</p>");
 	                }
