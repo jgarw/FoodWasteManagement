@@ -32,16 +32,13 @@
 	            <input type="radio" id="surplusNo" name="surplus" value="false">
 	            <label for="surplusNo">No</label><br><br>
 	
-	            <% if ("true".equals(request.getParameter("surplus"))) { %>
-	                <label>Listing Type:</label>
-	                <input type="radio" id="discounted" name="listingType" value="discounted">
-	                <label for="discounted">Discounted</label>
-	                <input type="radio" id="donation" name="listingType" value="donation">
-	                <label for="donation">Donation</label><br><br>
-	
-	                <label for="discountPrice">Discount Price:</label>
-	                <input type="number" id="discountPrice" name="discountPrice" step="0.01"><br><br>
-	            <% } %>
+                <label>Listing Type:</label>
+                <input type="radio" id="discounted" name="listingType" value="discounted">
+                <label for="discounted">Discounted</label>
+                <input type="radio" id="donation" name="listingType" value="donation">
+                <label for="donation">Donation</label><br><br>
+                <input type="radio" id="regular" name="listingType" value="regular">
+                <label for="regular">Regular</label><br><br>
 	
 	            <input type="submit" value="Create">
 	        </form>
@@ -62,10 +59,20 @@
 	                String listingType = request.getParameter("listingType");
 	                String discountPrice = request.getParameter("discountPrice");
 	                String retailerEmail = (String) session.getAttribute("username");
-	
-	                FoodItemsDAOImpl dao = new FoodItemsDAOImpl();
-	                dao.addFoodItem(itemName, expirationDate, quantity, price, surplus, listingType, retailerEmail);
-	                response.sendRedirect("retailer.jsp");
+	                boolean isValid = true;
+
+	                // Validate the input
+	                if (!surplus && !"regular".equals(listingType)) {
+	                    isValid = false;
+	                    out.print("<p style='color:red;'>Invalid Input: Only surplus items can be discount or donation.</p>");
+	                }
+
+	                // If valid, process the form
+	                if (isValid) {
+	                    FoodItemsDAOImpl dao = new FoodItemsDAOImpl();
+		                dao.addFoodItem(itemName, expirationDate, quantity, price, surplus, listingType, retailerEmail);
+		                response.sendRedirect("retailer.jsp");
+	                } 
 	            }
 	        %>
 		</div>
