@@ -17,10 +17,6 @@
 	 <%@ include file="header.jsp" %>
 		<div class="container">
 			<h1>Update Item</h1>
-			
-			<form action="retailer.jsp" method="get">
-	    		<input type="submit" value="Back">
-			</form>
 			<%
 		        String itemId = request.getParameter("id");
 				int id = 0;
