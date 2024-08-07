@@ -2,7 +2,7 @@
 <%@ page import="com.cst8288.finalproject.controller.*" %>
 <%@ page import="com.cst8288.finalproject.model.*" %>
 <%@ page import="java.sql.Date" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +11,10 @@
         <title>Create an item</title>
     </head>
     <body>
+    	<%
+    request.setAttribute("backUrl", "retailer.jsp");
+%>
+	 <%@ include file="header.jsp" %>
     	<div class="container">
 	        <h1>Create a New Item</h1>
 	        <form action="createItems.jsp" method="post">
@@ -64,8 +68,14 @@
 	                String retailerEmail = (String) session.getAttribute("username");
 	
 	                FoodItemsDAOImpl dao = new FoodItemsDAOImpl();
+	                
+	                //implement error checking to ensure negative numbers arent entered as quantity
+	                if (quantity < 0){
+	                	out.println("<p>Please enter quantity greater than zero.</p>");
+	                }else{
 	                dao.addFoodItem(itemName, expirationDate, quantity, price, surplus, listingType, retailerEmail);
 	                response.sendRedirect("retailer.jsp");
+	                }
 	            }
 	        %>
 		</div>

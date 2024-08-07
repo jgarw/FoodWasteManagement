@@ -11,6 +11,9 @@
 		<title>Update Page</title>
 	</head>
 	<body>
+	<%
+    request.setAttribute("backUrl", "retailer.jsp");
+%>
 	 <%@ include file="header.jsp" %>
 		<div class="container">
 			<h1>Update Item</h1>
