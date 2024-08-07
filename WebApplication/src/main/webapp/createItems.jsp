@@ -20,37 +20,69 @@
 	        <h1>Create a New Item</h1>
 			<!-- create a form to allow the retailer to input the item's information -->
 	        <form action="createItems.jsp" method="post">
-
-				<!-- create input field for item name -->
-	            <label for="itemName">Item Name:</label><br>
-	            <input type="text" id="itemName" name="itemName" required><br><br>
-				<!-- create input field for expiration date -->
-	            <label for="expirationDate">Expiration Date:</label>
-	            <input type="date" id="expirationDate" name="expirationDate" required><br><br>
-	            <!-- create input field for quantity -->
-	            <label for="quantity">Quantity:</label>
-	            <input type="number" id="quantity" name="quantity" step="1" required><br><br>
-				<!-- create input field for price -->
-	            <label for="price">Price:</label>
-	            <input type="number" id="price" name="price" step="0.01" required><br><br>
+	        <table>
+				<tr>
+					<td>
+						<!-- create input field for item name -->
+			            <label for="itemName">Item Name:</label><br>
+			            <input type="text" id="itemName" name="itemName" required><br><br>
+		            </td>
+	            </tr>
+	            
+	            <tr>
+					<td>
+						<!-- create input field for expiration date -->
+			            <label for="expirationDate">Expiration Date:</label>
+			            <input type="date" id="expirationDate" name="expirationDate" required><br><br>
+	            	</td>
+	            </tr>
+	            
+	            <tr>
+					<td>
+			            <!-- create input field for quantity -->
+			            <label for="quantity">Quantity:</label>
+			            <input type="number" id="quantity" name="quantity" step="1" required><br><br>
+			        </td>
+	            </tr>
+	            
+	            <tr>
+					<td>
+						<!-- create input field for price -->
+			            <label for="price">Price:</label>
+			            <input type="number" id="price" name="price" step="0.01" required><br><br>
+		            </td>
+	            </tr>
 				
-				<!-- create radio buttons for surplus -->
-	            <label>Surplus:</label>
-	            <input type="radio" id="surplusYes" name="surplus" value="true">
-	            <label for="surplusYes">Yes</label>
-	            <input type="radio" id="surplusNo" name="surplus" value="false">
-	            <label for="surplusNo">No</label><br><br>
+				<tr>
+					<td>
+						<!-- create radio buttons for surplus -->
+			            <label>Surplus:</label>
+			            <input type="radio" id="surplusYes" name="surplus" value="true">
+			            <label for="surplusYes">Yes</label>
+			            <input type="radio" id="surplusNo" name="surplus" value="false">
+			            <label for="surplusNo">No</label><br><br>
+			       </td>
+	            </tr>
+					
+					<!-- Create drowndown menu for listing types -->
+                 <tr>
+                 	<td>
+		                 <label>Listing Type:</label>
+		                <select name="listingType" id="itemName" required>
+		                        <option value="regular">Regular</option>
+		                        <option value="discount">Discount</option>
+		                        <option value="donation">Donation</option>
+		                    </select>
+		           </td>
+	            </tr>
 				
-				<!-- create radio buttons for listing type -->
-                <label>Listing Type:</label>
-                <input type="radio" id="discounted" name="listingType" value="discounted">
-                <label for="discounted">Discounted</label>
-                <input type="radio" id="donation" name="listingType" value="donation">
-                <label for="donation">Donation</label><br><br>
-                <input type="radio" id="regular" name="listingType" value="regular">
-                <label for="regular">Regular</label><br><br>
-				
-	            <input type="submit" value="Create">
+				<!-- Create table row for Create Item button -->
+				<tr>
+					<td>
+	            		<button type="submit">Create Item</button>
+	            	</td>
+	            </tr>
+	            </table>
 	        </form>
 	
 	        <%-- Processing form data if the request is a POST --%>
@@ -89,7 +121,7 @@
 	                boolean isValid = true;
 
 	                // Validate the input
-	                if (!surplus && !"regular".equals(listingType)) {
+	                if (!surplus && !"regular".equalsIgnoreCase(listingType)) {
 	                    isValid = false;
 	                    out.print("<p style='color:red;'>Invalid Input: Only surplus items can be discount or donation.</p>");
 	                }
