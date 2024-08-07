@@ -72,18 +72,25 @@
 	                boolean surplus = Boolean.parseBoolean(request.getParameter("surplus"));
 	                String listingType = request.getParameter("listingType");
 	                String retailerEmail = (String) session.getAttribute("username");
-	                
-	                
-	                
-	                dao.updateFoodItem(id, itemName, expirationDate, quantity, price, surplus, listingType, retailerEmail);
-	                RetailerSubject subject = new RetailerSubject();
-	                
-	                //if surplus is set to true, notify food alerts subscribers
-	                if(surplus == true){
-	                	subject.notifyObservers("Hot new food alert in your area! " + session.getAttribute("name") + " marked " + itemName + " as surplus at " + price);
+	                boolean isValid = true;
+
+	                // Validate the input
+	                if (!surplus && !"regular".equals(listingType)) {
+	                    isValid = false;
+	                    out.print("<p style='color:red;'>Invalid Input: Only surplus items can be discount or donation.</p>");
 	                }
-	                
-	                response.sendRedirect("retailer.jsp");
+
+	                // If valid, process the form
+	                if (isValid) {
+	                    dao.updateFoodItem(id, itemName, expirationDate, quantity, price, surplus, listingType, retailerEmail);
+		                RetailerSubject subject = new RetailerSubject();
+		                
+		                //if surplus is set to true, notify food alerts subscribers
+	                	if(surplus == true){
+		                	subject.notifyObservers("Hot new food alert in your area! " + session.getAttribute("name") + " marked " + itemName + " as surplus at " + price);
+		                }
+		                response.sendRedirect("retailer.jsp");
+	                } 
 	            }
 	        %>
 		</div>
