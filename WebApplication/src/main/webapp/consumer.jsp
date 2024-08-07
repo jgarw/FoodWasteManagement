@@ -37,7 +37,7 @@
                     %>
                     <tr>
                         <td><%= item.getName() %></td>
-                        <td><%= item.getExpirationDate() %></td>
+                        <td id="expDate"><%= item.getExpirationDate() %></td>
                         <td>$<%= item.getPrice() %></td>
                         <td>
                             <input type="number" name="quantity_<%= item.getId() %>" 
