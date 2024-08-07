@@ -15,7 +15,13 @@ import com.cst8288.finalproject.model.Purchase;
 public class PurchasedItemsDAOImpl implements PurchasedItemsDAO {
 
     private Connection connection;
-
+    
+    /**
+     * Constructor for PurchasedItemsDAOImpl class
+     * This constructor establishes a connection to the database when called.
+     *
+     * @return connection to the database from DBConnection class
+     */
     public PurchasedItemsDAOImpl() {
         connection = DBConnection.getInstance().getConnection();
     }

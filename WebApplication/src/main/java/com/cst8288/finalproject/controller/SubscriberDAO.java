@@ -10,6 +10,10 @@ public interface SubscriberDAO {
      */
     public void subscribeToAlerts(String email);
 
+    /**
+     * Method to retrieve all subscribers existing in the database
+     * @return List of all subscribers
+     */
     public List<String> retrieveSubscribers();
 
 }
