@@ -64,6 +64,9 @@
 	                    <td>
 	                        <a href="updateItem.jsp?id=<%= item.getId() %>">Update</a>
 	                    </td>
+	                    <td>
+	                        <a href="deleteItem.jsp?id=<%= item.getId() %>">Delete</a>
+	                    </td>
 	                </tr>
 	                <%
 	                        }

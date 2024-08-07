@@ -243,6 +243,27 @@ public class FoodItemsDAOImpl implements FoodItemsDAO{
 	        System.out.println("Error updating food item: " + e.getMessage());
 	    }
 	}
+	
+	@Override
+	public void deleteFoodItem(int itemId) {
+	    String query = "DELETE FROM FoodItems WHERE item_id = ?";
+
+	    try (PreparedStatement statement = connection.prepareStatement(query)) {
+	        // Set the parameter for the PreparedStatement
+	        statement.setInt(1, itemId);
+
+	        // Execute the update
+	        int rowsAffected = statement.executeUpdate();
+	        if (rowsAffected > 0) {
+	            System.out.println("Food item deleted successfully.");
+	        } else {
+	            System.out.println("No food item found with id: " + itemId);
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Error deleting food item: " + e.getMessage());
+	    }
+	}
+
 
 	/**
 	 * Retreive the quantity of a specific item

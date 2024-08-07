@@ -27,7 +27,7 @@ public interface FoodItemsDAO {
             String retailerEmail);
 
     /**
-     * Method for deleting a food item from the FoodItems table.
+     * Method for updating a food item from the FoodItems table.
      * @param name
      * @param expirationDate
      * @param price
@@ -37,6 +37,11 @@ public interface FoodItemsDAO {
      */
     public void updateFoodItem(int itemId, String name, Date expirationDate, int quantity, double price, boolean surplus, String listingType, String retailerEmail);
 
+    /**
+     * Method for deleting a food item from the FoodItems table.
+     * @param itemId
+     */
+    public void deleteFoodItem(int itemId);
     /**
      * Method for marking a food item as surplus in the FoodItems table.
      * @param id
