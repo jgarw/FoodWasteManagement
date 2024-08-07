@@ -2,6 +2,7 @@ package com.cst8288.finalproject.model;
 
 /**
  * This class extends the User class and provides a constructor for creating a Consumer object.
+ * @see User
  */
 public class Consumer extends User {
 

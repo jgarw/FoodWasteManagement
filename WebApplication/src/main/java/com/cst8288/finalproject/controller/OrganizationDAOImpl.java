@@ -12,7 +12,13 @@ import java.sql.SQLException;
 public class OrganizationDAOImpl implements UserTypeDAO{
 
     private Connection connection;
-
+    
+    /**
+     * Constructor for OrganizationDAOImpl class
+     * This constructor establishes a connection to the database when called.
+     *
+     * @return connection to the database from DBConnection class
+     */
     public OrganizationDAOImpl() {
         connection = DBConnection.getInstance().getConnection();
     }

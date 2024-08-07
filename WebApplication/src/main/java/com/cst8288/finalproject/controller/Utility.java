@@ -4,8 +4,15 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+/**
+ * Class that stores static utility methods useful for other classes
+ */
 public class Utility {
-    // Takes a String (such as from an HTML form) and returns a java.sql.Date object
+    /**
+     * Takes a date String (such as from an HTML form) and returns a java.sql.Date object
+     * @param dateString
+     * @return Date object of type java.sql.Date
+     */
     public static Date parseDate(String dateString) {
         // Expected date format from HTML form
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

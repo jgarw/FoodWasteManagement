@@ -1,5 +1,7 @@
 package com.cst8288.finalproject.model;
-
+/**
+ * Class that represents a food item claimed by a charitable organization
+ */
 public class Claim {
 
 	    /**

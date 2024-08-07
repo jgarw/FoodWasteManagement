@@ -67,13 +67,13 @@ public class EmailSender {
         	//set header of the message to the senders email
         	MIME.setFrom(new InternetAddress(sender));
 
-        	//set the recipient in the message heasder
+        	//set the recipient in the message header
         	MIME.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 
         	//set the subject of the header
         	MIME.setSubject("New FoodAlert!");
 
-        	//s=conent to send in email
+        	//s=content to send in email
         	MIME.setText(content);
 
         	//send the created message
@@ -84,7 +84,7 @@ public class EmailSender {
 
 
         }
-        //catch exception if email doesnt send succesfully
+        //catch exception if email doesn't send successfully
         catch(MessagingException e) {
         	System.out.println("Error sending email: " + e.getMessage());
         }

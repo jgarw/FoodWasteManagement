@@ -27,7 +27,10 @@ public class ClaimedItemsDAOImpl implements ClaimedItemsDAO{
     }
 
     /**
-     * Method for adding items that were Claimd into the database.
+     * Method for adding items that were claimed into the database.
+     * @param item_id
+     * @param organizationEmail
+     * @param quantity
      */
     @Override
     public void addClaim(int item_id, String organizationEmail, int quantity) {
@@ -47,7 +50,12 @@ public class ClaimedItemsDAOImpl implements ClaimedItemsDAO{
                 }
 
     }
-
+    
+    /**
+     * 
+     * @param organizationEmail
+     * @return List of all claimed items
+     */
     public List<Claim> retrieveAllClaims(String organizationEmail) {
         List<Claim> Claims = new ArrayList<>();
         String query = "SELECT * FROM claims WHERE org_id = ?";
