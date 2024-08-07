@@ -2,8 +2,7 @@
 <%@ page import="com.cst8288.finalproject.controller.*" %>
 <%@ page import="com.cst8288.finalproject.model.*" %>
 <%@ page import="java.sql.Date" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,6 +11,7 @@
 		<title>Update Page</title>
 	</head>
 	<body>
+	 <%@ include file="header.jsp" %>
 		<div class="container">
 			<h1>Update Item</h1>
 			
@@ -40,7 +40,7 @@
 				        <input type="date" id="expirationDate" name="expirationDate" value="<%= item.getExpirationDate() %>" required><br><br>
 				        
 				        <label for="quantity">Quantity:</label>
-	            		<input type="number" id="quantity" name="quantity" step="1" required <%= item.getQuantity() %>><br><br>
+	            		<input type="number" id="quantity" name="quantity" step="1" value= <%= item.getQuantity() %>><br><br>
 				
 				        <label for="price">Price:</label>
 				        <input type="number" id="price" name="price" step="0.01" value="<%= item.getPrice() %>" required><br><br>
