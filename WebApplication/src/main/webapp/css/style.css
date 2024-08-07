@@ -142,7 +142,13 @@ button:hover {
 
 /* Ensure links are not underlined */
 a {
+	color: #0000EE;
     text-decoration: none;
+}
+
+/* Ensures that links that are visited do not change color */
+a:visited {
+	color: #0000EE;
 }
 
 /* Specific styles for index.jsp */

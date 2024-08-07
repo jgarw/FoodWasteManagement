@@ -34,11 +34,14 @@
 	                	String retailerEmail = (String) session.getAttribute("username");
 	
 	                    List<FoodItem> foodItems = foodItemsDao.retrieveAllFoodItems(retailerEmail);
-	                       
+	                    
+	                    // Checks if the food items database table contains any food items, and displays them only if it does
 	                    if (foodItems != null) {
+	                    	// Displays the attributes of each item in each row of the table
 	                        for (FoodItem item : foodItems) {
 	                        	String surplusString = "";
 	                        	
+	                        	// Displays surplus as "Yes", "No" rather than boolean values
 	                        	if (item.isSurplus()) {
 			                    	surplusString = "Yes";
 			                    }
@@ -60,6 +63,9 @@
 	                    <td><%= item.getQuantity() %></td>
 	                    <td>
 	                        <a href="updateItem.jsp?id=<%= item.getId() %>">Update</a>
+	                    </td>
+	                    <td>
+	                        <a href="deleteItem.jsp?id=<%= item.getId() %>">Delete</a>
 	                    </td>
 	                </tr>
 	                <%
