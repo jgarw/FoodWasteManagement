@@ -60,7 +60,7 @@ public class UserDAOImpl implements UserDAO{
             statement.setString(5, user.getPhone());
 
 
-			// execute the SQL statemetn
+			// execute the SQL statement
 			statement.executeUpdate();
 
              // Retrieve the generated user_id
@@ -68,24 +68,27 @@ public class UserDAOImpl implements UserDAO{
             if (generatedKeys.next()) {
             int userId = generatedKeys.getInt(1);
             String subQuery = null;
-
-                //If the user created is a consumer, insert the generated user_id into the consumer table
-                if(user instanceof Consumer){
-                    subQuery = "INSERT INTO CONSUMERS (user_id) VALUES (?)";
-                }
-                //If the user created is a retailer, insert the generated user_id into the retailer table
-                else if(user instanceof Retailer){
-                    subQuery = "INSERT INTO RETAILERS (user_id) VALUES (?)";
-                }
-                //If the user created is an organization, insert the generated user_id into the organization table
-                else if(user instanceof Organization){
-                    subQuery = "INSERT INTO ORGANIZATIONS (user_id) VALUES (?)";
-                }
-
-                PreparedStatement subStatement = connection.prepareStatement(subQuery);
-                subStatement.setInt(1, userId);
-                subStatement.executeUpdate();
-
+            
+	            if (!(user instanceof Consumer) && !(user instanceof Retailer) && !(user instanceof Organization) ) {
+	            	System.out.println("User type not found.");
+	            } else {
+	                //If the user created is a consumer, insert the generated user_id into the consumer table
+	                if(user instanceof Consumer){
+	                    subQuery = "INSERT INTO CONSUMERS (user_id) VALUES (?)";
+	                }
+	                //If the user created is a retailer, insert the generated user_id into the retailer table
+	                else if(user instanceof Retailer){
+	                    subQuery = "INSERT INTO RETAILERS (user_id) VALUES (?)";
+	                }
+	                //If the user created is an organization, insert the generated user_id into the organization table
+	                else if(user instanceof Organization){
+	                    subQuery = "INSERT INTO ORGANIZATIONS (user_id) VALUES (?)";
+	                }
+	                
+	                PreparedStatement subStatement = connection.prepareStatement(subQuery);
+	                subStatement.setInt(1, userId);
+	                subStatement.executeUpdate();
+	            }
 		    }
         }
 		// handle possible exception thrown when trying to insert into table

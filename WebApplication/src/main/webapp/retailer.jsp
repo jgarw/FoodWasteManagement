@@ -30,7 +30,7 @@
 	                    <th>Surplus</th>
 	                    <th>Listing Type</th>
 	                    <th>Quantity</th>
-	                    <th>Actions</th>
+	                    <th colspan="2">Actions</th>
 	                </tr>
 	            </thead>
 	            <tbody>
