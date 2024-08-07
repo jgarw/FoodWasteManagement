@@ -1,0 +1,188 @@
+/* General styles */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url('../images/main.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+.content {
+    flex: 1; /* Allow content to grow and push footer to bottom */
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header-title {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+}
+
+.header button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.header button:hover {
+    background-color: #45a049;
+}
+
+/* Center content and add padding */
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Style for headers */
+h2 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* Style for forms and tables */
+form {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    table-layout: auto;
+}
+
+#expDate {
+	text-align: center;
+}
+
+#retailerTable {
+	background-color: #45a049;
+    color: white;
+}
+
+td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+/* Style for input fields */
+input[type="text"], input[type="password"], select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 5px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for buttons */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    max-width: 150px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Ensure links are not underlined */
+a {
+    text-decoration: none;
+}
+
+/* Specific styles for index.jsp */
+.button-group {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Specific styles for registration and login pages */
+form table {
+    margin: 0 auto;
+}
+
+form table td {
+    text-align: left;
+    padding: 10px;
+}
+
+/* Align and size checkboxes and buttons */
+form table td:last-child {
+    text-align: center;
+}
+
+form table td:nth-child(2) {
+    width: 80%;
+}
+
+button,
+input[type="checkbox"] {
+    margin: 10px 0;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-left: 0;
+}
+
+form .checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+}
+
+form .button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Footer styling */
+footer {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: auto; /* Push footer to the bottom */
+}
