@@ -90,13 +90,12 @@
 						</tr>
 						
 						
-						<!-- create radio buttons for listing type -->
-				        <% if (item.isSurplus()) { %>
+						<%-- <!-- create radio buttons for listing type -->
+				        <% if (item.isSurplus()) { %> --%>
 				        <tr>
 							<td>
 				                <label>Listing Type:</label>
-				                <select name="listingType" id="itemName" required>
-				                        <option selected disabled>Regular</option>
+				                	<select name="listingType" id="itemName" required>
 				                        <option value="regular">Regular</option>
 				                        <option value="discount">Discount</option>
 				                        <option value="donation">Donation</option>
@@ -112,7 +111,7 @@
 				        </tr>
 				        </table>
 				    </form>
-				<% } %>
+				<%-- <% } %> --%>
 		    
 			<%
 	            if ("POST".equalsIgnoreCase(request.getMethod())) {
@@ -141,7 +140,7 @@
 	                boolean isValid = true;
 
 	                // Validate the input
-	                if (!surplus && !"regular".equals(listingType)) {
+	                if (!surplus && !"regular".equalsIgnoreCase(listingType)) {
 	                    isValid = false;
 	                    out.print("<p style='color:red;'>Invalid Input: Only surplus items can be discount or donation.</p>");
 	                }

@@ -69,7 +69,6 @@
                  	<td>
 		                 <label>Listing Type:</label>
 		                <select name="listingType" id="itemName" required>
-		                        <option selected disabled>Regular</option>
 		                        <option value="regular">Regular</option>
 		                        <option value="discount">Discount</option>
 		                        <option value="donation">Donation</option>
@@ -122,7 +121,7 @@
 	                boolean isValid = true;
 
 	                // Validate the input
-	                if (!surplus && !"regular".equals(listingType)) {
+	                if (!surplus && !"regular".equalsIgnoreCase(listingType)) {
 	                    isValid = false;
 	                    out.print("<p style='color:red;'>Invalid Input: Only surplus items can be discount or donation.</p>");
 	                }
