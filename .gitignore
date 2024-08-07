@@ -5,7 +5,7 @@
 #ignore data file that holds database properties
 **/database.properties
 **/bin/
-**/target/
+WebApplications/target/
 
 
 #ignore instructions folder

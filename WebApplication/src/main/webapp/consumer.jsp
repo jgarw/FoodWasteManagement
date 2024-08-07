@@ -23,6 +23,7 @@
                         <th>Name</th>
                         <th>Expiration Date</th>
                         <th>Price</th>
+                        <th>Available</th>
                         <th>Quantity</th>
                     </tr>
                     <%
@@ -39,6 +40,7 @@
                         <td><%= item.getName() %></td>
                         <td id="expDate"><%= item.getExpirationDate() %></td>
                         <td>$<%= item.getPrice() %></td>
+                        <td><%= item.getQuantity() %>
                         <td>
                             <input type="number" name="quantity_<%= item.getId() %>" 
                                    min="0" max="<%= item.getQuantity() %>" value="0" 
