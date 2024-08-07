@@ -26,7 +26,6 @@ com/cst8288/finalproject/model/Claim.class
 com/cst8288/finalproject/controller/ClaimedItemsDAO.class
 com/cst8288/finalproject/controller/Utility.class
 com/cst8288/finalproject/controller/PurchasedItemsDAOImpl.class
-com/cst8288/finalproject/view/Main.class
 com/cst8288/finalproject/controller/SubscriberDAO.class
 com/cst8288/finalproject/controller/UserTypeDAO.class
 com/cst8288/finalproject/controller/FoodItemsDAO.class

@@ -72,7 +72,16 @@
                 String listingType = request.getParameter("listingType");
                 String retailerEmail = (String) session.getAttribute("username");
                 
+                
+                
                 dao.updateFoodItem(id, itemName, expirationDate, quantity, price, surplus, listingType, retailerEmail);
+                RetailerSubject subject = new RetailerSubject();
+                
+                //if surplus is set to true, notify food alerts subscribers
+                if(surplus == true){
+                	subject.notifyObservers("Hot new food alert in your area! " + session.getAttribute("name") + " marked " + itemName + " as surplus at " + price);
+                }
+                
                 response.sendRedirect("retailer.jsp");
             }
         %>
